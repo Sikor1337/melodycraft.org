@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 // Replaced broken vite/client reference with manual declarations
 declare module '*.svg' {
   const content: string;
