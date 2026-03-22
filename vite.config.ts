@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.API_KEY': JSON.stringify(env.VITE_API_KEY || process.env.API_KEY || ""),
     },
-    base: mode === 'production' ? '/melodycraft.org/' : '/',
+    base: '/',
     build: {
       outDir: 'dist',
       sourcemap: false,
