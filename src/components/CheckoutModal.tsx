@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { X, CreditCard, Lock, CheckCircle, Loader2, Download } from 'lucide-react';
 import { SongConcept } from '../services/geminiService';
 
@@ -70,74 +71,84 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md"
+    >
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        className="bg-slate-900 border border-white/10 rounded-[3rem] w-full max-w-lg shadow-2xl overflow-hidden flex flex-col"
+      >
         
         {step === 'form' && (
           <>
-            <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-              <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-indigo-600" />
+            <div className="p-8 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
+              <h2 className="text-2xl font-black text-white flex items-center gap-3 uppercase tracking-tighter">
+                <CreditCard className="w-6 h-6 text-indigo-500" />
                 Secure Checkout
               </h2>
-              <button onClick={onClose} className="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                <X className="w-5 h-5 text-slate-500" />
+              <button onClick={onClose} className="p-3 hover:bg-white/10 rounded-2xl transition-colors">
+                <X className="w-6 h-6 text-slate-500" />
               </button>
             </div>
 
-            <div className="p-8">
-              <div className="mb-8 bg-indigo-50 p-4 rounded-xl border border-indigo-100">
-                <p className="text-sm text-indigo-600 uppercase font-semibold mb-1">Order Summary</p>
+            <div className="p-10 space-y-8">
+              <div className="bg-indigo-500/5 p-6 rounded-2xl border border-indigo-500/20">
+                <p className="text-[10px] text-indigo-400 uppercase font-black tracking-[0.3em] mb-3">Order Summary</p>
                 <div className="flex justify-between items-center">
-                  <h3 className="font-bold text-indigo-900 text-lg">
+                  <h3 className="font-bold text-white text-xl">
                     {item.type === 'concept' ? `Custom Song` : 'Complete Package + Distribution'}
                   </h3>
-                  <span className="text-xl font-bold text-indigo-700">${item.price}</span>
+                  <span className="text-2xl font-black text-indigo-400">${item.price}</span>
                 </div>
                 {item.concept && (
-                  <p className="text-xs text-indigo-400 mt-2 truncate">
+                  <p className="text-xs text-slate-500 mt-3 font-medium">
                     Project: {item.concept.title} ({item.concept.genre})
                   </p>
                 )}
               </div>
 
               <form onSubmit={handlePay} className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700">Card Number</label>
+                <div className="space-y-3">
+                  <label className="text-xs font-black text-slate-500 uppercase tracking-widest">Card Number</label>
                   <input 
                     type="text" 
                     placeholder="0000 0000 0000 0000"
                     required
-                    className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none font-mono"
+                    className="w-full p-4 rounded-xl glass border-white/10 outline-none text-white font-mono focus:border-indigo-500/50 transition-all"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">Expiry</label>
+                  <div className="space-y-3">
+                    <label className="text-xs font-black text-slate-500 uppercase tracking-widest">Expiry</label>
                     <input 
                       type="text" 
                       placeholder="MM/YY"
                       required
-                      className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none font-mono"
+                      className="w-full p-4 rounded-xl glass border-white/10 outline-none text-white font-mono focus:border-indigo-500/50 transition-all"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">CVC</label>
+                  <div className="space-y-3">
+                    <label className="text-xs font-black text-slate-500 uppercase tracking-widest">CVC</label>
                     <input 
                       type="text" 
                       placeholder="123"
                       required
-                      className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none font-mono"
+                      className="w-full p-4 rounded-xl glass border-white/10 outline-none text-white font-mono focus:border-indigo-500/50 transition-all"
                     />
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl shadow-lg shadow-green-600/20 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-5 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl shadow-xl shadow-indigo-600/20 transition-all flex items-center justify-center gap-3 text-lg uppercase tracking-widest"
                 >
-                  <Lock className="w-4 h-4" />
+                  <Lock className="w-5 h-5" />
                   Pay ${item.price}
                 </button>
               </form>
@@ -146,43 +157,47 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
         )}
 
         {step === 'processing' && (
-          <div className="p-12 flex flex-col items-center justify-center text-center">
-            <Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-6" />
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Processing Payment</h3>
-            <p className="text-slate-500">Connecting to secure gateway...</p>
+          <div className="p-20 flex flex-col items-center justify-center text-center space-y-6">
+            <Loader2 className="w-16 h-16 text-indigo-500 animate-spin" />
+            <div>
+              <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter">Processing Payment</h3>
+              <p className="text-slate-500 font-medium">Connecting to secure gateway...</p>
+            </div>
           </div>
         )}
 
         {step === 'success' && (
-          <div className="p-12 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-              <CheckCircle className="w-10 h-10 text-green-600" />
+          <div className="p-20 flex flex-col items-center justify-center text-center space-y-8 animate-fade-in">
+            <div className="w-24 h-24 bg-indigo-500/10 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-12 h-12 text-indigo-500" />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-2">Order Confirmed!</h3>
-            <p className="text-slate-600 mb-8 max-w-xs">
-              Your order for <strong>{item.concept?.title || 'Custom Song'}</strong> has been sent to our production team.
-            </p>
+            <div>
+              <h3 className="text-3xl font-black text-white mb-3 uppercase tracking-tighter">Order Confirmed!</h3>
+              <p className="text-slate-400 font-medium max-w-xs mx-auto">
+                Your order for <strong className="text-white">{item.concept?.title || 'Custom Song'}</strong> has been sent to our production team.
+              </p>
+            </div>
             
-            <div className="flex flex-col gap-3 w-full">
+            <div className="flex flex-col gap-4 w-full">
                 <button 
-                onClick={downloadReceipt}
-                className="px-6 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                  onClick={downloadReceipt}
+                  className="px-8 py-4 glass border-white/10 hover:bg-white/10 text-white font-bold rounded-2xl transition-all flex items-center justify-center gap-3 uppercase tracking-widest text-xs"
                 >
-                <Download className="w-4 h-4" />
-                Download Receipt (Debug)
+                  <Download className="w-4 h-4" />
+                  Download Receipt
                 </button>
 
                 <button 
-                onClick={onClose}
-                className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl transition-colors"
+                  onClick={onClose}
+                  className="px-8 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-slate-200 transition-all uppercase tracking-widest text-sm"
                 >
-                Done
+                  Done
                 </button>
             </div>
           </div>
         )}
 
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

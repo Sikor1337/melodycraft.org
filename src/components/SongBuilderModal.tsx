@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { X, Loader2, Sparkles, Star } from 'lucide-react';
 import { generateSongConcept, SongConcept } from '../services/geminiService';
 
@@ -24,12 +25,14 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
   const [selectedGenre, setSelectedGenre] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [concept, setConcept] = useState<SongConcept | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
       if (initialGenre) setSelectedGenre(initialGenre);
       setVision('');
       setConcept(null);
+      setError(null);
     }
   }, [isOpen, initialGenre]);
 
@@ -38,12 +41,13 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
   const handleGenerate = async () => {
     if (!vision || !selectedGenre) return;
     setIsLoading(true);
+    setError(null);
     try {
       const result = await generateSongConcept(vision, selectedGenre);
       setConcept(result);
-    } catch (error) {
-      console.error(error);
-      alert("Composition failed. Please check your connection.");
+    } catch (err) {
+      console.error(err);
+      setError("Composition failed. Please check your connection or try again.");
     } finally {
       setIsLoading(false);
     }
@@ -53,8 +57,18 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
   const price = isPremium ? 99 : 49;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-fade-in">
-      <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md"
+    >
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+      >
         <div className={`p-8 border-b border-white/5 flex justify-between items-center ${isPremium ? 'bg-gradient-to-r from-indigo-950/50 to-slate-900' : 'bg-slate-900'}`}>
           <div>
             <h2 className="text-3xl font-black flex items-center gap-3 text-white">
@@ -97,6 +111,12 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
                 />
               </div>
 
+              {error && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm font-bold animate-shake">
+                  {error}
+                </div>
+              )}
+
               <button
                 onClick={handleGenerate}
                 disabled={!selectedGenre || !vision || isLoading}
@@ -131,7 +151,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

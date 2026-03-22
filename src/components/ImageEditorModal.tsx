@@ -1,5 +1,6 @@
 
 import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { X, Loader2, Image as ImageIcon, Wand2, Upload, ArrowRight } from 'lucide-react';
 import { editImage } from '../services/geminiService';
 
@@ -13,6 +14,7 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!isOpen) return null;
@@ -24,6 +26,7 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
       reader.onloadend = () => {
         setOriginalImage(reader.result as string);
         setGeneratedImage(null);
+        setError(null);
       };
       reader.readAsDataURL(file);
     }
@@ -32,22 +35,33 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
   const handleEdit = async () => {
     if (!originalImage || !prompt) return;
     setIsLoading(true);
+    setError(null);
     try {
       const [header, base64Data] = originalImage.split(',');
       const mimeType = header.split(':')[1].split(';')[0];
       const resultBase64 = await editImage(base64Data, mimeType, prompt);
       setGeneratedImage(`data:image/png;base64,${resultBase64}`);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to edit image. Try a simpler prompt.");
+    } catch (err) {
+      console.error(err);
+      setError("Failed to edit image. Try a simpler prompt or check your connection.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl animate-fade-in">
-      <div className="bg-slate-900 border border-white/10 rounded-[3rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl"
+    >
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        className="bg-slate-900 border border-white/10 rounded-[3rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+      >
         <div className="p-8 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
           <div>
             <h2 className="text-3xl font-black flex items-center gap-3 text-white">
@@ -106,6 +120,11 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
 
           <div className="space-y-6">
             <label className="text-xs font-black text-fuchsia-400 uppercase tracking-[0.3em]">2. Describe Your Artistic Vision</label>
+            {error && (
+              <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm font-bold">
+                {error}
+              </div>
+            )}
             <div className="flex gap-4">
               <input
                 type="text"
@@ -136,7 +155,7 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
