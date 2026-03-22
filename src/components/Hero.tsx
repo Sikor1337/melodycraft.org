@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Wand2 } from 'lucide-react';
-import { CyberpunkGrid } from '@/components/CyberpunkGrid';
+import { CyberpunkGrid } from './CyberpunkGrid';
 
 interface HeroProps {
   onStartBuilder: () => void;
