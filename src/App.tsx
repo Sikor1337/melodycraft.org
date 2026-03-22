@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { Navbar } from '@/components/Navbar';
-import { Hero } from '@/components/Hero';
-import { HowItWorks } from '@/components/HowItWorks';
-import { Footer } from '@/components/Footer';
-import { SongBuilderModal } from '@/components/SongBuilderModal';
-import { ImageEditorModal } from '@/components/ImageEditorModal';
-import { CursorTrace } from '@/components/CursorTrace';
-import { LoginModal } from '@/components/LoginModal';
-import { CheckoutModal } from '@/components/CheckoutModal';
-import { Pricing } from '@/components/Pricing';
-import { TrustedBy } from '@/components/TrustedBy';
-import { SongConcept } from '@/services/geminiService';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { HowItWorks } from './components/HowItWorks';
+import { Footer } from './components/Footer';
+import { SongBuilderModal } from './components/SongBuilderModal';
+import { ImageEditorModal } from './components/ImageEditorModal';
+import { CursorTrace } from './components/CursorTrace';
+import { LoginModal } from './components/LoginModal';
+import { CheckoutModal } from './components/CheckoutModal';
+import { Pricing } from './components/Pricing';
+import { TrustedBy } from './components/TrustedBy';
+import { SongConcept } from './services/geminiService';
 
 interface OrderItem {
   type: 'concept' | 'release';
