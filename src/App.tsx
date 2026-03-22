@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
@@ -29,6 +30,21 @@ function App() {
   const [selectedTier, setSelectedTier] = useState<'standard' | 'premium'>('standard');
   const [orderItem, setOrderItem] = useState<OrderItem | null>(null);
 
+  // Smooth scroll to sections
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleStartBuilder = (genre?: string, tier: 'standard' | 'premium' = 'standard') => {
     setSelectedGenre(genre || '');
     setSelectedTier(tier);
@@ -37,7 +53,6 @@ function App() {
 
   const handleOrderSong = (concept: SongConcept) => {
     setIsBuilderOpen(false);
-    // Determine price based on selected tier
     const price = selectedTier === 'premium' ? 99 : 49;
     setOrderItem({ 
       type: selectedTier === 'premium' ? 'release' : 'concept', 
@@ -48,7 +63,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans relative bg-slate-950 text-white selection:bg-indigo-500 selection:text-white">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen flex flex-col font-sans relative bg-slate-950 text-white selection:bg-indigo-500 selection:text-white overflow-x-hidden"
+    >
       <CursorTrace />
       <Navbar 
         onLoginClick={() => setIsLoginOpen(true)}
@@ -56,51 +75,63 @@ function App() {
       />
       
       <main className="flex-grow">
-        <div id="home">
+        <section id="home">
           <Hero 
             onStartBuilder={() => handleStartBuilder(undefined, 'standard')} 
             onOpenArt={() => setIsArtOpen(true)}
           />
-        </div>
+        </section>
         
         <TrustedBy />
 
-        <div id="how-it-works">
-          <HowItWorks />
-        </div>
+        <section id="how-it-works">
+          <HowItWorks onStartBuilder={() => handleStartBuilder(undefined, 'standard')} />
+        </section>
 
-        <Pricing onSelectPlan={(tier: 'standard' | 'premium') => handleStartBuilder(undefined, tier)} />
+        <section id="pricing">
+          <Pricing onSelectPlan={(tier: 'standard' | 'premium') => handleStartBuilder(undefined, tier)} />
+        </section>
       </main>
       
-      <div id="contact">
+      <section id="contact">
         <Footer />
-      </div>
+      </section>
       
-      <SongBuilderModal 
-        isOpen={isBuilderOpen} 
-        onClose={() => setIsBuilderOpen(false)} 
-        initialGenre={selectedGenre}
-        selectedTier={selectedTier}
-        onOrder={handleOrderSong}
-      />
-      
-      <LoginModal 
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-        onLogin={() => setIsLoggedIn(true)}
-      />
+      <AnimatePresence>
+        {isBuilderOpen && (
+          <SongBuilderModal 
+            isOpen={isBuilderOpen} 
+            onClose={() => setIsBuilderOpen(false)} 
+            initialGenre={selectedGenre}
+            selectedTier={selectedTier}
+            onOrder={handleOrderSong}
+          />
+        )}
+        
+        {isLoginOpen && (
+          <LoginModal 
+            isOpen={isLoginOpen}
+            onClose={() => setIsLoginOpen(false)}
+            onLogin={() => setIsLoggedIn(true)}
+          />
+        )}
 
-      <ImageEditorModal 
-        isOpen={isArtOpen}
-        onClose={() => setIsArtOpen(false)}
-      />
+        {isArtOpen && (
+          <ImageEditorModal 
+            isOpen={isArtOpen}
+            onClose={() => setIsArtOpen(false)}
+          />
+        )}
 
-      <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        item={orderItem}
-      />
-    </div>
+        {isCheckoutOpen && (
+          <CheckoutModal
+            isOpen={isCheckoutOpen}
+            onClose={() => setIsCheckoutOpen(false)}
+            item={orderItem}
+          />
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
