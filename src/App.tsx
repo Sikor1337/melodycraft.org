@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { Navbar } from './components/Navbar.tsx';
-import { Hero } from './components/Hero.tsx';
-import { HowItWorks } from './components/HowItWorks.tsx';
-import { Footer } from './components/Footer.tsx';
-import { SongBuilderModal } from './components/SongBuilderModal.tsx';
-import { ImageEditorModal } from './components/ImageEditorModal.tsx';
-import { CursorTrace } from './components/CursorTrace.tsx';
-import { LoginModal } from './components/LoginModal.tsx';
-import { CheckoutModal } from './components/CheckoutModal.tsx';
-import { Pricing } from './components/Pricing.tsx';
-import { TrustedBy } from './components/TrustedBy.tsx';
-import { SongConcept } from './services/geminiService.ts';
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { HowItWorks } from '@/components/HowItWorks';
+import { Footer } from '@/components/Footer';
+import { SongBuilderModal } from '@/components/SongBuilderModal';
+import { ImageEditorModal } from '@/components/ImageEditorModal';
+import { CursorTrace } from '@/components/CursorTrace';
+import { LoginModal } from '@/components/LoginModal';
+import { CheckoutModal } from '@/components/CheckoutModal';
+import { Pricing } from '@/components/Pricing';
+import { TrustedBy } from '@/components/TrustedBy';
+import { SongConcept } from '@/services/geminiService';
 
 interface OrderItem {
   type: 'concept' | 'release';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, CreditCard, Lock, CheckCircle, Loader2, Download } from 'lucide-react';
-import { SongConcept } from '../services/geminiService.ts';
+import { SongConcept } from '@/services/geminiService';
 
 interface CheckoutModalProps {
   isOpen: boolean;
