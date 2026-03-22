@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, Loader2, Sparkles, Star } from 'lucide-react';
-import { generateSongConcept, SongConcept } from '../services/geminiService.ts';
+import { generateSongConcept, SongConcept } from '@/services/geminiService';
 
 interface SongBuilderModalProps {
   isOpen: boolean;

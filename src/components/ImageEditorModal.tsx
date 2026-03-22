@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from 'react';
 import { X, Loader2, Image as ImageIcon, Wand2, Upload, ArrowRight } from 'lucide-react';
-import { editImage } from '../services/geminiService.ts';
+import { editImage } from '@/services/geminiService';
 
 interface ImageEditorModalProps {
   isOpen: boolean;
