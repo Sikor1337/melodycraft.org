@@ -6,88 +6,49 @@ export const CursorTrace: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    let points: {x: number, y: number, age: number}[] = [];
     
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    };
-    
-    window.addEventListener('resize', resize);
-    resize();
-
-    // Trace points
-    const points: {x: number, y: number, age: number}[] = [];
-    const maxAge = 25; // How fast trail fades
-    
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       points.push({ x: e.clientX, y: e.clientY, age: 0 });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-
-    let animationFrameId: number;
-
     const render = () => {
-      ctx.clearRect(0, 0, width, height);
-      
-      // Update points
-      for (let i = points.length - 1; i >= 0; i--) {
-        points[i].age += 1;
-        if (points[i].age > maxAge) {
-          points.splice(i, 1);
-        }
-      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      points = points.filter(p => p.age < 25);
+      points.forEach(p => p.age++);
 
       if (points.length > 1) {
-        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(168, 85, 247, 0.3)';
+        ctx.lineWidth = 2;
         ctx.lineCap = 'round';
-
-        for (let i = 0; i < points.length - 1; i++) {
-          const p1 = points[i];
-          const p2 = points[i+1];
-          
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          
-          const opacity = 1 - (p1.age / maxAge);
-          
-          // Cyberpunk Cyan to Purple gradient feel
-          // Alternating colors or gradient based on age
-          ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`; // Violet-500 base
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = 'rgba(236, 72, 153, 0.8)'; // Pink glow
-          ctx.lineWidth = 3 * opacity;
-          
-          ctx.stroke();
+        ctx.lineJoin = 'round';
+        ctx.moveTo(points[0].x, points[0].y);
+        for(let i=1; i<points.length; i++) {
+          ctx.lineTo(points[i].x, points[i].y);
         }
+        ctx.stroke();
       }
-      
-      animationFrameId = requestAnimationFrame(render);
+      requestAnimationFrame(render);
     };
 
-    render();
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', onMove);
+    render();
     return () => {
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  return (
-    <canvas 
-      ref={canvasRef} 
-      className="fixed inset-0 pointer-events-none z-50" 
-      style={{ mixBlendMode: 'screen' }}
-    />
-  );
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[100] opacity-40" />;
 };

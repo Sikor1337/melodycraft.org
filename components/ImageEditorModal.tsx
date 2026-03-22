@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { X, Loader2, Image as ImageIcon, Wand2, Upload, ArrowRight } from 'lucide-react';
 import { editImage } from '../services/geminiService';
@@ -30,176 +31,110 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({ isOpen, onCl
 
   const handleEdit = async () => {
     if (!originalImage || !prompt) return;
-
     setIsLoading(true);
     try {
-      // Extract base64 data and mime type
       const [header, base64Data] = originalImage.split(',');
       const mimeType = header.split(':')[1].split(';')[0];
-
       const resultBase64 = await editImage(base64Data, mimeType, prompt);
       setGeneratedImage(`data:image/png;base64,${resultBase64}`);
     } catch (error) {
       console.error(error);
-      alert("Failed to edit image. Please try again.");
+      alert("Failed to edit image. Try a simpler prompt.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col">
-        {/* Header */}
-        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl animate-fade-in">
+      <div className="bg-slate-900 border border-white/10 rounded-[3rem] w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
           <div>
-            <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-              <Wand2 className="w-6 h-6 text-purple-600" />
-              Album Art Studio
+            <h2 className="text-3xl font-black flex items-center gap-3 text-white">
+              <ImageIcon className="w-8 h-8 text-fuchsia-500" />
+              Art Studio
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
-              Refine your album cover with AI magic.
-            </p>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-2 hover:bg-slate-200 rounded-full transition-colors"
-          >
+          <button onClick={onClose} className="p-3 hover:bg-white/10 rounded-2xl transition-colors">
             <X className="w-6 h-6 text-slate-500" />
           </button>
         </div>
 
-        {/* Body */}
-        <div className="p-8 space-y-8">
-          
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Input Side */}
-            <div className="space-y-4">
-              <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wide">
-                1. Upload Original Image
-              </label>
-              
+        <div className="p-10 overflow-y-auto space-y-10">
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="space-y-6">
+              <label className="text-xs font-black text-fuchsia-400 uppercase tracking-[0.3em]">1. Upload Base Image</label>
               <div 
                 onClick={() => fileInputRef.current?.click()}
-                className={`relative group cursor-pointer border-2 border-dashed rounded-xl h-64 flex flex-col items-center justify-center transition-all ${
-                  originalImage ? 'border-indigo-300 bg-indigo-50/30' : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50'
+                className={`group cursor-pointer border-2 border-dashed rounded-[2rem] h-72 flex flex-col items-center justify-center transition-all ${
+                  originalImage ? 'border-fuchsia-500/40 bg-fuchsia-500/5' : 'border-white/10 hover:border-white/20 hover:bg-white/5'
                 }`}
               >
-                <input 
-                  type="file" 
-                  ref={fileInputRef} 
-                  className="hidden" 
-                  accept="image/*" 
-                  onChange={handleFileChange} 
-                />
-                
+                <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileChange} />
                 {originalImage ? (
-                  <img 
-                    src={originalImage} 
-                    alt="Original" 
-                    className="w-full h-full object-contain p-2 rounded-xl"
-                  />
+                  <img src={originalImage} alt="Input" className="w-full h-full object-contain p-4 rounded-[2rem]" />
                 ) : (
-                  <div className="flex flex-col items-center text-slate-400 p-4 text-center">
-                    <Upload className="w-10 h-10 mb-2 group-hover:scale-110 transition-transform" />
-                    <p className="font-medium">Click to upload image</p>
-                    <p className="text-xs mt-1">Supports JPG, PNG</p>
+                  <div className="text-center p-8">
+                    <Upload className="w-12 h-12 text-slate-600 mb-4 mx-auto group-hover:scale-110 transition-transform" />
+                    <p className="text-slate-400 font-bold">Drop your image here</p>
+                    <p className="text-xs text-slate-600 mt-2 uppercase tracking-widest font-black">JPG / PNG / WEBP</p>
                   </div>
                 )}
               </div>
-
-              <div className="space-y-2">
-                 <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wide">
-                  2. Describe Changes
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="e.g., Add a retro vintage filter, make the background blue..."
-                    className="w-full p-4 pr-12 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-slate-700 font-medium placeholder:font-normal"
-                    onKeyDown={(e) => e.key === 'Enter' && handleEdit()}
-                  />
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <Wand2 className="w-5 h-5 text-slate-400" />
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={handleEdit}
-                disabled={!originalImage || !prompt || isLoading}
-                className="w-full py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl shadow-lg shadow-purple-600/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    <ImageIcon className="w-5 h-5" />
-                    Generate Edit
-                  </>
-                )}
-              </button>
             </div>
 
-            {/* Output Side */}
-            <div className="space-y-4">
-              <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wide">
-                Result
-              </label>
-              
-              <div className="border border-slate-200 rounded-xl h-64 bg-slate-50 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="space-y-6">
+              <label className="text-xs font-black text-fuchsia-400 uppercase tracking-[0.3em]">Result Preview</label>
+              <div className="border border-white/10 rounded-[2rem] h-72 bg-slate-950 flex flex-col items-center justify-center relative overflow-hidden">
                  {isLoading && (
-                   <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex items-center justify-center">
-                      <div className="text-center">
-                        <Loader2 className="w-8 h-8 animate-spin text-purple-600 mx-auto mb-2" />
-                        <p className="text-purple-900 font-semibold animate-pulse">Designing...</p>
-                      </div>
+                   <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                      <Loader2 className="w-12 h-12 animate-spin text-fuchsia-500 mb-4" />
+                      <p className="text-fuchsia-400 font-black uppercase tracking-widest text-xs animate-pulse">Rendering Design...</p>
                    </div>
                  )}
-                 
                  {generatedImage ? (
-                   <img 
-                    src={generatedImage} 
-                    alt="Generated" 
-                    className="w-full h-full object-contain p-2"
-                   />
+                   <img src={generatedImage} alt="Result" className="w-full h-full object-contain p-4" />
                  ) : (
-                   <div className="flex flex-col items-center text-slate-300 p-8 text-center">
-                     <ImageIcon className="w-12 h-12 mb-3 opacity-50" />
-                     <p>Your edited image will appear here</p>
+                   <div className="text-center p-8 text-slate-700">
+                     <Wand2 className="w-12 h-12 mb-4 mx-auto opacity-20" />
+                     <p className="font-bold">Magic happens here</p>
                    </div>
                  )}
               </div>
-              
-              {generatedImage && (
-                <div className="flex gap-3">
-                   <a 
-                    href={generatedImage} 
-                    download="melodycraft-art.png"
-                    className="flex-1 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl transition-colors flex justify-center items-center gap-2"
-                  >
-                    Download
-                  </a>
-                  <button 
-                     onClick={() => {
-                       setOriginalImage(generatedImage);
-                       setGeneratedImage(null);
-                       setPrompt('');
-                     }}
-                     className="flex-1 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold rounded-xl transition-colors flex justify-center items-center gap-2"
-                  >
-                    Use as Base <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
             </div>
           </div>
 
+          <div className="space-y-6">
+            <label className="text-xs font-black text-fuchsia-400 uppercase tracking-[0.3em]">2. Describe Your Artistic Vision</label>
+            <div className="flex gap-4">
+              <input
+                type="text"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="e.g., Make it look like a 90s rock album with vintage noise..."
+                className="flex-grow p-6 rounded-2xl glass border-white/10 outline-none text-lg text-white placeholder:text-slate-600 focus:border-fuchsia-500/50 transition-all"
+                onKeyDown={(e) => e.key === 'Enter' && handleEdit()}
+              />
+              <button
+                onClick={handleEdit}
+                disabled={!originalImage || !prompt || isLoading}
+                className="px-10 py-6 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-black rounded-2xl transition-all shadow-xl shadow-fuchsia-600/20 disabled:opacity-50"
+              >
+                {isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : "Apply Magic"}
+              </button>
+            </div>
+          </div>
+          
+          {generatedImage && (
+            <div className="flex gap-4 justify-end animate-fade-in">
+              <a href={generatedImage} download="melodycraft-cover.png" className="px-8 py-4 glass border-white/10 hover:bg-white/10 text-white font-bold rounded-xl flex items-center gap-2">
+                Download Art
+              </a>
+              <button onClick={() => { setOriginalImage(generatedImage); setGeneratedImage(null); }} className="px-8 py-4 bg-white text-slate-950 font-black rounded-xl flex items-center gap-2">
+                Iterate <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

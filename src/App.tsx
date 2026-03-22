@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { Footer } from './components/Footer';
 import { SongBuilderModal } from './components/SongBuilderModal';
+import { ImageEditorModal } from './components/ImageEditorModal';
 import { CursorTrace } from './components/CursorTrace';
 import { LoginModal } from './components/LoginModal';
 import { CheckoutModal } from './components/CheckoutModal';
@@ -20,6 +21,7 @@ interface OrderItem {
 function App() {
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isArtOpen, setIsArtOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,24 +48,29 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans relative bg-slate-50">
+    <div className="min-h-screen flex flex-col font-sans relative bg-slate-950 text-white selection:bg-indigo-500 selection:text-white">
       <CursorTrace />
       <Navbar 
         onLoginClick={() => setIsLoginOpen(true)}
         isLoggedIn={isLoggedIn}
       />
       
-      <div id="home">
-        <Hero onStartBuilder={() => handleStartBuilder(undefined, 'standard')} />
-      </div>
-      
-      <TrustedBy />
+      <main className="flex-grow">
+        <div id="home">
+          <Hero 
+            onStartBuilder={() => handleStartBuilder(undefined, 'standard')} 
+            onOpenArt={() => setIsArtOpen(true)}
+          />
+        </div>
+        
+        <TrustedBy />
 
-      <div id="how-it-works">
-        <HowItWorks />
-      </div>
+        <div id="how-it-works">
+          <HowItWorks />
+        </div>
 
-      <Pricing onSelectPlan={(tier) => handleStartBuilder(undefined, tier)} />
+        <Pricing onSelectPlan={(tier) => handleStartBuilder(undefined, tier)} />
+      </main>
       
       <div id="contact">
         <Footer />
@@ -81,6 +88,11 @@ function App() {
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
         onLogin={() => setIsLoggedIn(true)}
+      />
+
+      <ImageEditorModal 
+        isOpen={isArtOpen}
+        onClose={() => setIsArtOpen(false)}
       />
 
       <CheckoutModal

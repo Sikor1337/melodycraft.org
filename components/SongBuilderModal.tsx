@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { X, Loader2, Music, Sparkles, ArrowRight, Star } from 'lucide-react';
+import { X, Loader2, Sparkles, Star } from 'lucide-react';
 import { generateSongConcept, SongConcept } from '../services/geminiService';
 
 interface SongBuilderModalProps {
@@ -24,14 +25,11 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [concept, setConcept] = useState<SongConcept | null>(null);
 
-  // Reset or set initial genre when modal opens
   useEffect(() => {
     if (isOpen) {
-      if (initialGenre) {
-        setSelectedGenre(initialGenre);
-      }
-    } else {
-      // Optional: reset state on close if desired
+      if (initialGenre) setSelectedGenre(initialGenre);
+      setVision('');
+      setConcept(null);
     }
   }, [isOpen, initialGenre]);
 
@@ -39,78 +37,48 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
 
   const handleGenerate = async () => {
     if (!vision || !selectedGenre) return;
-
     setIsLoading(true);
     try {
       const result = await generateSongConcept(vision, selectedGenre);
       setConcept(result);
     } catch (error) {
       console.error(error);
-      alert("Failed to generate song concept. Please try again.");
+      alert("Composition failed. Please check your connection.");
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleDirectOrder = () => {
-    // If no input provided, use defaults
-    const finalGenre = selectedGenre || "Artist's Choice";
-    const finalVision = vision.trim() || "No specific details provided - Surprise me!";
-
-    // Create a manual concept object from the user's input
-    const manualConcept: SongConcept = {
-      title: "Custom Song Request",
-      genre: finalGenre,
-      mood: "Custom User Request",
-      lyricsSnippet: finalVision,
-      instrumentationIdeas: ["As described in request"]
-    };
-    onOrder(manualConcept);
   };
 
   const isPremium = selectedTier === 'premium';
   const price = isPremium ? 99 : 49;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-300">
-        {/* Header */}
-        <div className={`p-6 border-b flex justify-between items-center rounded-t-2xl ${isPremium ? 'bg-slate-900 text-white border-slate-800' : 'bg-slate-50 border-slate-100 text-slate-800'}`}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-fade-in">
+      <div className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+        <div className={`p-8 border-b border-white/5 flex justify-between items-center ${isPremium ? 'bg-gradient-to-r from-indigo-950/50 to-slate-900' : 'bg-slate-900'}`}>
           <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              {isPremium ? <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" /> : <Sparkles className="w-6 h-6 text-yellow-500" />}
-              {isPremium ? 'Pro Artist Vision' : 'Draft Your Vision'}
+            <h2 className="text-3xl font-black flex items-center gap-3 text-white">
+              {isPremium ? <Star className="w-8 h-8 text-yellow-500 fill-yellow-500" /> : <Sparkles className="w-8 h-8 text-indigo-500" />}
+              {isPremium ? 'Pro Artist Session' : 'Song Draft Concept'}
             </h2>
-            <p className={`text-sm mt-1 ${isPremium ? 'text-slate-400' : 'text-slate-500'}`}>
-              {isPremium ? 'Describe the hit you want to release.' : 'Use AI to brainstorm ideas, or send us your own vision.'}
-            </p>
           </div>
-          <button 
-            onClick={onClose}
-            className={`p-2 rounded-full transition-colors ${isPremium ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-200 text-slate-500'}`}
-          >
-            <X className="w-6 h-6" />
+          <button onClick={onClose} className="p-3 hover:bg-white/10 rounded-2xl transition-colors">
+            <X className="w-6 h-6 text-slate-500" />
           </button>
         </div>
 
-        {/* Body */}
-        <div className="p-8 space-y-6">
+        <div className="p-10 overflow-y-auto space-y-10">
           {!concept ? (
             <>
-              {/* Step 1: Genre */}
-              <div className="space-y-3">
-                <label className="text-sm font-semibold text-slate-700 uppercase tracking-wide">
-                  1. Choose a Genre
-                </label>
+              <div className="space-y-4">
+                <label className="text-xs font-black text-indigo-400 uppercase tracking-[0.3em]">1. Select Your Sound</label>
                 <div className="flex flex-wrap gap-2">
                   {GENRES.map((g) => (
                     <button
                       key={g}
                       onClick={() => setSelectedGenre(g)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                        selectedGenre === g
-                          ? 'bg-indigo-600 text-white shadow-md scale-105'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${
+                        selectedGenre === g ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/30' : 'glass text-slate-400 hover:text-white'
                       }`}
                     >
                       {g}
@@ -119,106 +87,46 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
                 </div>
               </div>
 
-              {/* Step 2: Vision */}
-              <div className="space-y-3">
-                <label className="text-sm font-semibold text-slate-700 uppercase tracking-wide">
-                  2. Describe Your Story / Lyrics
-                </label>
+              <div className="space-y-4">
+                <label className="text-xs font-black text-indigo-400 uppercase tracking-[0.3em]">2. Your Story or Lyrics</label>
                 <textarea
                   value={vision}
                   onChange={(e) => setVision(e.target.value)}
-                  placeholder="Type your lyrics here, or describe the story you want the song to tell..."
-                  className="w-full h-32 p-4 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none text-slate-700"
+                  placeholder="What should the song be about? A memory, a person, or a specific vibe..."
+                  className="w-full h-40 p-6 rounded-2xl glass border-white/10 outline-none text-lg placeholder:text-slate-600 focus:border-indigo-500/50 transition-all resize-none text-white"
                 />
               </div>
 
-              {/* Actions */}
-              <div className="space-y-3 pt-2">
-                <button
-                  onClick={handleGenerate}
-                  disabled={!selectedGenre || !vision || isLoading}
-                  className="w-full py-4 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold rounded-xl shadow-lg shadow-yellow-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Dreaming up lyrics...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-5 h-5" />
-                      Generate AI Concept (Brainstorm)
-                    </>
-                  )}
-                </button>
-
-                <div className="relative flex items-center py-2">
-                  <div className="flex-grow border-t border-slate-200"></div>
-                  <span className="flex-shrink-0 mx-4 text-slate-400 text-xs uppercase font-semibold">OR</span>
-                  <div className="flex-grow border-t border-slate-200"></div>
-                </div>
-
-                <button
-                  onClick={handleDirectOrder}
-                  disabled={isLoading}
-                  className="w-full py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl border-2 border-indigo-100 hover:border-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
-                >
-                  Skip AI & Order Directly (${price})
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <button
+                onClick={handleGenerate}
+                disabled={!selectedGenre || !vision || isLoading}
+                className="w-full py-6 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl transition-all flex items-center justify-center gap-3 text-xl disabled:opacity-50"
+              >
+                {isLoading ? <><Loader2 className="w-6 h-6 animate-spin" /> Composing Masterpiece...</> : <><Sparkles className="w-6 h-6" /> Generate Concept</>}
+              </button>
             </>
           ) : (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="bg-indigo-50 border border-indigo-100 p-6 rounded-xl">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-indigo-900">{concept.title}</h3>
-                    <p className="text-indigo-600 font-medium">{concept.genre} • {concept.mood}</p>
-                  </div>
-                  <div className="bg-white p-2 rounded-lg shadow-sm">
-                    <Music className="w-6 h-6 text-indigo-500" />
-                  </div>
+            <div className="space-y-8 animate-fade-in">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-6">
+                <div>
+                  <h3 className="text-4xl font-black text-white">{concept.title}</h3>
+                  <p className="text-indigo-400 font-bold tracking-widest uppercase text-sm mt-2">{concept.genre} • {concept.mood}</p>
                 </div>
-                
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-indigo-800 uppercase mb-2">Chorus Preview</h4>
-                    <p className="font-serif text-lg text-slate-700 italic leading-relaxed border-l-4 border-yellow-400 pl-4 bg-white/50 p-4 rounded-r-lg">
-                      "{concept.lyricsSnippet}"
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-indigo-800 uppercase mb-2">Suggested Vibe</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {concept.instrumentationIdeas.map((inst, i) => (
-                        <span key={i} className="px-3 py-1 bg-white text-indigo-600 text-sm rounded-md shadow-sm border border-indigo-100">
-                          {inst}
-                        </span>
-                      ))}
+                <div className="p-6 bg-indigo-500/5 border-l-4 border-indigo-500 italic text-xl text-slate-200 font-serif leading-relaxed">
+                  "{concept.lyricsSnippet}"
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  {concept.instrumentationIdeas.slice(0, 4).map((idea, i) => (
+                    <div key={i} className="text-xs font-bold text-slate-500 uppercase flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                      {idea}
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-              
               <div className="flex gap-4">
-                <button 
-                  onClick={() => setConcept(null)}
-                  className="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-colors"
-                >
-                  Try Again
-                </button>
-                <button 
-                  className={`flex-1 py-3 font-bold rounded-xl shadow-lg transition-colors ${
-                    isPremium 
-                      ? 'bg-slate-900 hover:bg-slate-800 text-white shadow-slate-900/20' 
-                      : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/20'
-                  }`}
-                  onClick={() => onOrder(concept)}
-                >
-                  Order {isPremium ? 'Premium' : 'Now'} (${price})
-                </button>
+                <button onClick={() => setConcept(null)} className="flex-1 py-5 glass hover:bg-white/10 font-black rounded-2xl text-white">Refine Vision</button>
+                <button onClick={() => onOrder(concept)} className="flex-[2] py-5 bg-indigo-600 hover:bg-indigo-500 font-black rounded-2xl text-xl text-white">Confirm Order (${price})</button>
               </div>
             </div>
           )}
