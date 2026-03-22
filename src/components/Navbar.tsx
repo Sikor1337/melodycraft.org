@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Music } from 'lucide-react';
+import { Music } from 'lucide-react';
 
 interface NavbarProps {
   onLoginClick: () => void;
