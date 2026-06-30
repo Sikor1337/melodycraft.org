@@ -12,6 +12,7 @@ export const CyberpunkGrid: React.FC = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
     let offset = 0;
+    let frame = 0;
 
     const resize = () => {
       width = window.innerWidth;
@@ -30,26 +31,29 @@ export const CyberpunkGrid: React.FC = () => {
       ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)';
       ctx.lineWidth = 1;
 
-      // Vertical lines
+      // Perspective vertical lines converging toward the horizon
       const centerX = width / 2;
       for (let i = -20; i <= 20; i++) {
         ctx.moveTo(centerX + i * 140, height);
         ctx.lineTo(centerX + i * 20, 0);
       }
 
-      // Horizontal lines (moving)
+      // Horizontal lines scrolling downward
       for (let i = 0; i < 25; i++) {
         const yPos = (offset + i * 40) % height;
         ctx.moveTo(0, yPos);
         ctx.lineTo(width, yPos);
       }
       ctx.stroke();
-      
-      requestAnimationFrame(render);
+
+      frame = requestAnimationFrame(render);
     };
 
     render();
-    return () => window.removeEventListener('resize', resize);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', resize);
+    };
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />;

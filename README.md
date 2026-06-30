@@ -1,37 +1,51 @@
 # MelodyCraft
 
-The world's easiest way to create custom songs using AI and professional producers.
+The easiest way to create custom, studio-quality songs using AI and professional producers — delivered in 24 hours.
 
-## How to Launch Locally
+A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS v4) with two AI-powered features backed by Google Gemini:
 
-1. **Prerequisites**
-   - Node.js installed (v18+)
-   - A Google Gemini API Key
+- **Song Builder** — generates a custom song concept (title, mood, lyrics, instrumentation) from the user's story and genre.
+- **Art Studio** — AI image editing for cover art.
 
-2. **Setup Project**
+## Run Locally
+
+1. **Prerequisites:** Node.js v18+ and a [Google Gemini API key](https://aistudio.google.com/apikey).
+
+2. **Install dependencies:**
    ```bash
-   npm create vite@latest melody-craft -- --template react-ts
-   cd melody-craft
    npm install
    ```
 
-3. **Install Dependencies**
-   ```bash
-   npm install lucide-react @google/genai clsx tailwind-merge
+3. **Configure your API key:** create a `.env` file in the project root:
    ```
+   VITE_API_KEY=your_gemini_api_key_here
+   ```
+   Vite injects this as `process.env.API_KEY` at build time (see `vite.config.ts`). `.env` is gitignored. Without a key the site renders fine, but the two AI features will fail when called.
 
-4. **Tailwind Setup**
-   Follow the [Tailwind CSS Vite Guide](https://tailwindcss.com/docs/guides/vite) to generate `tailwind.config.js` and add the directives to `index.css`.
-
-5. **API Key Configuration**
-   - Create a `.env` file in the root.
-   - Add: `VITE_API_KEY=your_key_here`
-   - Update `services/geminiService.ts` to use `import.meta.env.VITE_API_KEY` instead of `process.env.API_KEY` if running in Vite.
-
-6. **Run**
+4. **Start the dev server:**
    ```bash
    npm run dev
    ```
 
+   **Windows shortcut:** double-click **`start-dev.bat`** in the project root — it installs dependencies (first run only), starts the server on `http://127.0.0.1:3000/`, and opens your browser. Double-click **`stop-dev.bat`** to stop it. (Port 3000 with an explicit IPv4 host avoids a `localhost` IPv4/IPv6 conflict that can otherwise cause "can't connect".)
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Production build to `dist/` |
+| `npm run lint` | Type-check with `tsc --noEmit` (the only automated check) |
+| `npm run preview` | Serve the production build locally |
+
+## Project Structure
+
+- `src/App.tsx` — the entire page; composes all sections and manages modal state.
+- `src/components/` — all UI components (single source of truth).
+- `src/services/geminiService.ts` — the only Gemini integration layer.
+
+See `CLAUDE.md` for architecture details.
+
 ## Deployment
-This project is ready to deploy on **Vercel** or **Netlify**. Simply connect your GitHub repository and add the `API_KEY` environment variable in the dashboard.
+
+Ready to deploy on **Vercel** or **Netlify**: connect the repository and add `VITE_API_KEY` as an environment variable in the dashboard. Build command `npm run build`, output directory `dist`.

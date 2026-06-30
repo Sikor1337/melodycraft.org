@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
+import { AudioSamples } from './components/AudioSamples';
+import { Testimonials } from './components/Testimonials';
+import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { SongBuilderModal } from './components/SongBuilderModal';
 import { ImageEditorModal } from './components/ImageEditorModal';
@@ -88,9 +91,15 @@ function App() {
           <HowItWorks onStartBuilder={() => handleStartBuilder(undefined, 'standard')} />
         </section>
 
+        <AudioSamples />
+
+        <Testimonials />
+
         <section id="pricing">
           <Pricing onSelectPlan={(tier: 'standard' | 'premium') => handleStartBuilder(undefined, tier)} />
         </section>
+
+        <FAQ />
       </main>
       
       <section id="contact">
