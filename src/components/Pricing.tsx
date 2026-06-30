@@ -33,7 +33,7 @@ const PLANS = [
 
 export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
   return (
-    <section id="pricing" className="py-28 hairline">
+    <section id="pricing" className="py-20 md:py-28 hairline">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-medium text-accent mb-4">Pricing</p>

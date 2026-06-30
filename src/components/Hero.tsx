@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden">
       {/* One soft, warm light source — boutique, not neon. */}
       <div className="absolute top-[-15%] left-1/4 w-[55%] h-[55%] bg-accent/[0.07] rounded-full blur-[150px] pointer-events-none" />
 
@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="font-display text-5xl md:text-7xl font-medium leading-[1.04] text-white mb-7"
+              className="font-display text-4xl sm:text-5xl md:text-7xl font-medium leading-[1.05] text-white mb-7"
             >
               A song made just
               <br />
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
             <p className="text-sm text-stone-500 mt-5 leading-relaxed">
               A real custom track, written from a single brief and delivered in a day.
             </p>
-            <div className="mt-6 pt-6 border-t border-white/8 flex items-center gap-6 text-sm text-stone-400">
+            <div className="mt-6 pt-6 border-t border-white/8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-400">
               <span><span className="text-white font-semibold">4.9</span>/5 rating</span>
               <span><span className="text-white font-semibold">24h</span> turnaround</span>
               <span><span className="text-white font-semibold">10k+</span> songs</span>

@@ -24,7 +24,7 @@ const TESTIMONIALS = [
 
 export const Testimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="py-28 hairline">
+    <section id="testimonials" className="py-20 md:py-28 hairline">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-medium text-accent mb-4">Customers</p>

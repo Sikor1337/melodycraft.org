@@ -30,7 +30,7 @@ const PLATFORMS = [
 
 export const AudioSamples: React.FC = () => {
   return (
-    <section id="samples" className="py-28 hairline">
+    <section id="samples" className="py-20 md:py-28 hairline">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-medium text-accent mb-4">Listen</p>

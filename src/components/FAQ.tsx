@@ -29,7 +29,7 @@ export const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-28 hairline">
+    <section id="faq" className="py-20 md:py-28 hairline">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="mb-12">
           <p className="text-sm font-medium text-accent mb-4">FAQ</p>
