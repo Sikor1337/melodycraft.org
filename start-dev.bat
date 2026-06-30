@@ -2,7 +2,7 @@
 REM ============================================================
 REM  MelodyCraft - local dev launcher
 REM  Double-click this file to start the website locally.
-REM  It runs on http://127.0.0.1:3000/  (Ctrl+C to stop)
+REM  It runs on http://127.0.0.1:3000/melodycraft.org/  (Ctrl+C to stop)
 REM ============================================================
 
 cd /d "%~dp0"
@@ -20,12 +20,12 @@ if not exist node_modules (
 
 echo.
 echo ============================================================
-echo  Starting MelodyCraft at  http://127.0.0.1:3000/
+echo  Starting MelodyCraft at  http://127.0.0.1:3000/melodycraft.org/
 echo  Keep this window open. Press Ctrl+C to stop the server.
 echo ============================================================
 echo.
 
-start "" "http://127.0.0.1:3000/"
+start "" "http://127.0.0.1:3000/melodycraft.org/"
 call npm run dev -- --host 127.0.0.1 --port 3000 --strictPort
 
 pause

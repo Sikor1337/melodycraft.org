@@ -20,12 +20,13 @@ npm run preview    # serve the production build locally
 
 `npm run lint` (`tsc --noEmit`) is the sole automated verification — run it after edits. `tsconfig.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters`, so unused imports/vars fail the build. There is no test runner, ESLint, or formatter.
 
-**Windows helpers:** `start-dev.bat` (installs deps if needed, runs the server on `http://127.0.0.1:3000/`, opens the browser) and `stop-dev.bat`.
+**Windows helpers:** `start-dev.bat` (installs deps if needed, runs the server on `http://127.0.0.1:3000/melodycraft.org/`, opens the browser) and `stop-dev.bat`. Note the dev URL includes the `/melodycraft.org/` base path.
 
 ## Architecture
 
 - `src/index.tsx` — entry point; mounts `<App/>` in a class-based `ErrorBoundary` and `React.StrictMode`.
-- `src/index.css` — Tailwind v4 entry (`@import "tailwindcss"`), an `@theme` font token, and two utility classes used across the site: `.surface` (subtle card background + hairline border) and `.hairline` (thin top border between full-width sections). Plus `animate-fade-in` / `animate-shake` and a `prefers-reduced-motion` block.
+- `src/index.css` — Tailwind v4 entry (`@import "tailwindcss"`). `@theme` defines `--font-sans` (Plus Jakarta Sans), `--font-display` (Fraunces serif — used via the `font-display` class on headings), and `--color-accent` (the gold token → drives `bg-accent`/`text-accent`/etc.). Utility classes: `.surface` (subtle card bg + hairline border) and `.hairline` (thin top border between sections), plus `animate-fade-in` / `animate-shake` and a `prefers-reduced-motion` block.
+- `src/components/SpotifyEmbed.tsx` — wraps a Spotify iframe player. `src` URLs in `Hero`/`AudioSamples` are **placeholders**; swap for the studio's own playlist/track embed links. Use playlist/album embeds (render dark); a single-track embed shows a light "preview" bar for logged-out visitors. `Navbar` has a mobile hamburger menu (`md:hidden`).
 - `src/App.tsx` — the whole page. Holds top-level UI state as `useState` flags and composes the sections in conversion order (`Hero` → `TrustedBy` → `HowItWorks` → `AudioSamples` → `Testimonials` → `Pricing` → `FAQ` → `Footer`), toggling three modals via `framer-motion`'s `AnimatePresence`: `SongBuilderModal` (order form), `LoginModal`, `CheckoutModal`.
 - `src/types.ts` — shared types: `Tier` (`'standard' | 'premium'`), `SongOrder` (the order-form brief), `OrderItem` (what checkout receives), and `TIER_PRICE` (`standard` = $49, `premium` = $99).
 - `src/components/` — all UI components (single source of truth; one component per PascalCase file, `export const`, typed `React.FC`).
@@ -34,12 +35,13 @@ Flow: `SongBuilderModal` collects a brief (genre, occasion, who it's for, story)
 
 ## Design system
 
-Restrained "premium dark" look — deliberately not flashy:
-- **Palette:** near-black background (`#0a0a0b` / `bg-neutral-950`), off-white text, neutral greys; a single **amber-400** accent used sparingly. No gradients-on-text, no neon glows, no animated background grid, no cursor trail.
-- **Components:** cards use `.surface`; sections separate with `.hairline`. Radii stay at `rounded-lg`/`rounded-2xl` (avoid the old `rounded-[2.5rem]` extremes). Headings are `font-bold` + `tracking-tight` in normal case (not all-uppercase `font-black`).
-- **Buttons:** primary = amber bg with `text-neutral-950`; secondary = `border border-white/15` + `hover:bg-white/5`.
+Elegant, boutique "premium dark" look — deliberately restrained:
+- **Palette:** warm near-black background (`#0b0a09` / `bg-stone-950`), warm off-white text, `stone` greys; a single **gold accent** via the `accent` token (`bg-accent`, `text-accent`, `border-accent/30`, etc.) used sparingly. No gradients-on-text, no neon glows, no animated background grid, no cursor trail.
+- **Type:** section/hero headings use the **Fraunces serif** (`font-display` class) at `font-medium`; body uses Plus Jakarta Sans. Headings are normal case (not all-uppercase `font-black`).
+- **Components:** cards use `.surface`; sections separate with `.hairline` and use `py-20 md:py-28`. Buttons are pill-shaped (`rounded-full`) in the hero/CTAs; primary = `bg-accent text-stone-950`, secondary = `border border-white/15` + `hover:bg-white/5`.
+- **Mobile-first:** base styles target mobile; scale up with `sm:`/`md:`/`lg:`. The navbar collapses to a hamburger menu on mobile.
 
-When adding UI, follow these tokens rather than reintroducing `glass`, `indigo/fuchsia/slate`, gradient text, or heavy shadows.
+When adding UI, follow these tokens rather than reintroducing `glass`, `indigo/fuchsia/slate`/`amber-*` literals, gradient text, or heavy shadows.
 
 ## Deployment
 
