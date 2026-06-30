@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden">
       {/* One soft, warm light source — boutique, not neon. */}
       <div className="absolute top-[-15%] left-1/4 w-[55%] h-[55%] bg-accent/[0.07] rounded-full blur-[150px] pointer-events-none" />
 

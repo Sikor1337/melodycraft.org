@@ -89,30 +89,16 @@ function App() {
       </AnimatePresence>
 
       <main className="flex-grow">
-        <section id="home">
-          <Hero onStartBuilder={() => handleStartBuilder()} />
-        </section>
-
+        <Hero onStartBuilder={() => handleStartBuilder()} />
         <TrustedBy />
-
-        <section id="how-it-works">
-          <HowItWorks onStartBuilder={() => handleStartBuilder()} />
-        </section>
-
+        <HowItWorks onStartBuilder={() => handleStartBuilder()} />
         <AudioSamples />
-
         <Testimonials />
-
-        <section id="pricing">
-          <Pricing onSelectPlan={(tier) => handleStartBuilder('', tier)} />
-        </section>
-
+        <Pricing onSelectPlan={(tier) => handleStartBuilder('', tier)} />
         <FAQ />
       </main>
 
-      <section id="contact">
-        <Footer />
-      </section>
+      <Footer />
 
       <AnimatePresence>
         {isBuilderOpen && (
