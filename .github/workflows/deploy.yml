@@ -33,11 +33,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          # Optional: add VITE_API_KEY as a repository secret to enable the
-          # AI features in the deployed build. Without it, the site renders
-          # fine but the Gemini-powered features fail when used.
-          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

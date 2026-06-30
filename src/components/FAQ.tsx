@@ -4,24 +4,24 @@ import { Plus } from 'lucide-react';
 
 const FAQS = [
   {
-    q: 'How long does it take to get my song?',
-    a: 'Most custom songs are delivered within 24 hours. Pro Release orders are prioritized and include a dedicated producer who keeps you updated throughout.',
+    q: 'How long does it take?',
+    a: 'Most songs are delivered within 24 hours. Pro Release orders are prioritized and include a dedicated producer who keeps you updated.',
   },
   {
-    q: 'Do I own the rights to my song?',
-    a: 'Yes. The Personal Song plan includes a personal-use license, and the Pro Release plan grants full commercial rights — you can monetize it on YouTube, Spotify, ads, anywhere.',
+    q: 'Do I own the rights?',
+    a: 'Yes. Personal includes a personal-use license; Pro Release grants full commercial rights — use it on YouTube, Spotify, ads, anywhere.',
   },
   {
-    q: 'Is it really made by humans, or just AI?',
-    a: 'Both. Our AI helps you shape the concept and lyrics instantly, then professional producers record and master a studio-quality track from scratch. You get the speed of AI with a real human touch.',
+    q: 'Who actually makes the song?',
+    a: 'Professional producers and musicians. You share the brief, and a real producer writes, records, and masters the track from scratch.',
   },
   {
-    q: 'What if I don’t like the result?',
-    a: 'Every plan includes revisions so we can fine-tune your track until it feels right. Your satisfaction is the whole point.',
+    q: "What if I don't like it?",
+    a: 'Every plan includes revisions so we can fine-tune the track until it feels right.',
   },
   {
-    q: 'Can you distribute my song to Spotify and Apple Music?',
-    a: 'Yes — the Pro Release plan includes distribution to all major streaming platforms, plus WAV files and stems for total flexibility.',
+    q: 'Can you distribute it to streaming?',
+    a: 'Yes — Pro Release includes distribution to all major platforms, plus WAV files and stems.',
   },
 ];
 
@@ -29,27 +29,27 @@ export const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-32 bg-slate-950">
+    <section id="faq" className="py-28 hairline">
       <div className="container mx-auto px-6 max-w-3xl">
-        <div className="text-center mb-16">
-          <span className="text-indigo-400 font-bold tracking-widest uppercase text-sm mb-4 block">Got Questions?</span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Frequently Asked</h2>
+        <div className="mb-12">
+          <p className="text-sm font-medium text-amber-400 mb-4">FAQ</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Questions, answered.</h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="divide-y divide-white/8 border-t border-b border-white/8">
           {FAQS.map((item, idx) => {
             const isOpen = open === idx;
             return (
-              <div key={item.q} className="glass border-white/5 rounded-3xl overflow-hidden">
+              <div key={item.q}>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : idx)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between gap-6 p-7 text-left"
+                  className="w-full flex items-center justify-between gap-6 py-6 text-left"
                 >
-                  <span className="text-lg md:text-xl font-bold text-white">{item.q}</span>
+                  <span className="text-lg font-medium text-white">{item.q}</span>
                   <Plus
-                    className={`w-6 h-6 text-indigo-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
+                    className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
                   />
                 </button>
                 <AnimatePresence initial={false}>
@@ -58,10 +58,10 @@ export const FAQ: React.FC = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <p className="px-7 pb-7 text-lg text-slate-400 leading-relaxed font-medium">{item.a}</p>
+                      <p className="pb-6 text-neutral-400 leading-relaxed max-w-2xl">{item.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Mail, Lock, LogIn, Loader2 } from 'lucide-react';
+import { X, Loader2 } from 'lucide-react';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -18,76 +18,70 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
+    // Demo auth — a real backend would verify credentials here.
     setTimeout(() => {
       setIsLoading(false);
       onLogin();
       onClose();
-    }, 1500);
+    }, 1200);
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
     >
-      <motion.div 
-        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+      <motion.div
+        initial={{ scale: 0.96, opacity: 0, y: 16 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 20 }}
-        className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-md shadow-2xl overflow-hidden flex flex-col"
+        exit={{ scale: 0.96, opacity: 0, y: 16 }}
+        className="surface bg-neutral-950 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden flex flex-col"
       >
-        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
-          <h2 className="text-2xl font-black text-white tracking-tighter uppercase">Welcome Back</h2>
-          <button onClick={onClose} className="p-3 hover:bg-white/10 rounded-2xl transition-colors">
-            <X className="w-6 h-6 text-slate-500" />
+        <div className="px-7 py-6 border-b border-white/8 flex justify-between items-center">
+          <h2 className="text-xl font-bold text-white tracking-tight">Welcome back</h2>
+          <button onClick={onClose} aria-label="Close" className="p-2 -mr-2 hover:bg-white/5 rounded-lg transition-colors">
+            <X className="w-5 h-5 text-neutral-500" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-10 space-y-8">
-          <div className="space-y-4">
-            <label className="text-xs font-black text-indigo-400 uppercase tracking-[0.3em]">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-              <input 
-                type="email" 
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 rounded-2xl glass border-white/10 outline-none text-white placeholder:text-slate-600 focus:border-indigo-500/50 transition-all"
-                placeholder="you@example.com"
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="p-7 space-y-5">
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-neutral-300">Email</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+            />
           </div>
 
-          <div className="space-y-4">
-            <label className="text-xs font-black text-indigo-400 uppercase tracking-[0.3em]">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-              <input 
-                type="password" 
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 rounded-2xl glass border-white/10 outline-none text-white placeholder:text-slate-600 focus:border-indigo-500/50 transition-all"
-                placeholder="••••••••"
-              />
-            </div>
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-neutral-300">Password</label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+            />
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-5 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl shadow-xl shadow-indigo-600/20 transition-all flex items-center justify-center gap-3 text-lg uppercase tracking-widest"
+            className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
           >
-            {isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : <LogIn className="w-6 h-6" />}
-            {isLoading ? 'Authenticating...' : 'Sign In'}
+            {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+            {isLoading ? 'Signing in…' : 'Sign in'}
           </button>
 
-          <p className="text-center text-sm text-slate-500 font-medium">
-            Don't have an account? <button type="button" className="text-indigo-400 font-bold hover:underline">Sign up</button>
+          <p className="text-center text-sm text-neutral-500">
+            New here? <button type="button" className="text-amber-400 font-medium hover:underline">Create an account</button>
           </p>
         </form>
       </motion.div>

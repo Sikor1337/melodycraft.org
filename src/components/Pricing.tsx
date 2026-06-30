@@ -1,71 +1,91 @@
 import React from 'react';
-import { Check, Star } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { Tier } from '../types';
 
 interface PricingProps {
-  onSelectPlan: (tier: 'standard' | 'premium') => void;
+  onSelectPlan: (tier: Tier) => void;
 }
+
+const PLANS = [
+  {
+    tier: 'standard' as Tier,
+    name: 'Personal',
+    price: 49,
+    note: 'one time',
+    features: ['Up to 3-minute song', 'Mastered MP3 download', '2 revisions included', 'Personal-use license'],
+    featured: false,
+  },
+  {
+    tier: 'premium' as Tier,
+    name: 'Pro Release',
+    price: 99,
+    note: 'per track',
+    features: [
+      'Full commercial rights',
+      'Spotify & Apple Music distribution',
+      'WAV + stems included',
+      'Priority 24-hour delivery',
+      'Dedicated producer',
+    ],
+    featured: true,
+  },
+];
 
 export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
   return (
-    <section id="pricing" className="py-32 bg-slate-950">
+    <section id="pricing" className="py-28 hairline">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-24">
-          <span className="text-indigo-400 font-bold tracking-widest uppercase text-sm mb-4 block">Simple, Honest Pricing</span>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter">A Plan for Every Vision.</h2>
-          <p className="text-xl text-slate-400">No subscriptions. Pay once, own your song forever.</p>
+        <div className="max-w-2xl mb-14">
+          <p className="text-sm font-medium text-amber-400 mb-4">Pricing</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+            Pay once. Own it forever.
+          </h2>
+          <p className="text-lg text-neutral-400">No subscriptions, no hidden fees.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Personal Card */}
-          <div className="glass p-12 rounded-[3rem] border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
-            <div>
-              <h3 className="text-2xl font-black mb-4 uppercase tracking-widest text-slate-400">Personal Song</h3>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-7xl font-black">$49</span>
-                <span className="text-slate-500 font-bold uppercase tracking-widest text-sm">one time</span>
-              </div>
-              <ul className="space-y-6 mb-12">
-                {['Up to 3-minute production', 'Mastered MP3 download', '2 revisions included', 'Personal-use license'].map((f) => (
-                  <li key={f} className="flex items-center gap-4 text-slate-300 font-medium">
-                    <Check className="w-5 h-5 text-indigo-500 shrink-0" /> {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button
-              onClick={() => onSelectPlan('standard')}
-              className="w-full py-5 glass border-white/10 hover:bg-white/10 text-white font-black rounded-2xl transition-all uppercase tracking-widest text-sm"
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+          {PLANS.map((plan) => (
+            <div
+              key={plan.tier}
+              className={`rounded-2xl p-8 flex flex-col ${
+                plan.featured ? 'bg-amber-400/[0.06] border border-amber-400/25' : 'surface'
+              }`}
             >
-              Select Personal
-            </button>
-          </div>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+                {plan.featured && (
+                  <span className="text-xs font-semibold text-amber-400 border border-amber-400/30 rounded-full px-3 py-1">
+                    Most popular
+                  </span>
+                )}
+              </div>
 
-          {/* Pro Card */}
-          <div className="relative glass p-12 rounded-[3rem] border-indigo-500/30 bg-indigo-500/5 shadow-[0_0_100px_rgba(99,102,241,0.1)] flex flex-col justify-between overflow-hidden">
-            <div className="absolute top-0 right-0 bg-indigo-500 text-white text-[10px] font-black px-6 py-2 rounded-bl-2xl uppercase tracking-[0.2em]">Most Popular</div>
-            <div>
-              <h3 className="text-2xl font-black mb-4 flex items-center gap-3 uppercase tracking-widest text-indigo-400">
-                Pro Release <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-              </h3>
               <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-7xl font-black">$99</span>
-                <span className="text-slate-500 font-bold uppercase tracking-widest text-sm">per track</span>
+                <span className="text-5xl font-bold text-white">${plan.price}</span>
+                <span className="text-neutral-500">{plan.note}</span>
               </div>
-              <ul className="space-y-6 mb-12">
-                {['Full commercial rights', 'Spotify & Apple Music distribution', 'WAV + stems included', 'Priority 24-hour delivery', 'Dedicated producer'].map((f) => (
-                  <li key={f} className="flex items-center gap-4 text-white font-medium">
-                    <Check className="w-5 h-5 text-indigo-500 shrink-0" /> {f}
+
+              <ul className="space-y-4 mb-10 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-neutral-300">
+                    <Check className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                    {f}
                   </li>
                 ))}
               </ul>
+
+              <button
+                onClick={() => onSelectPlan(plan.tier)}
+                className={`w-full py-3.5 rounded-lg font-semibold transition-colors ${
+                  plan.featured
+                    ? 'bg-amber-400 hover:bg-amber-300 text-neutral-950'
+                    : 'border border-white/15 text-white hover:bg-white/5'
+                }`}
+              >
+                Choose {plan.name}
+              </button>
             </div>
-            <button
-              onClick={() => onSelectPlan('premium')}
-              className="w-full py-6 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl shadow-xl shadow-indigo-500/20 transition-all text-xl uppercase tracking-tighter"
-            >
-              Select Pro Release
-            </button>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,30 +1,33 @@
 import React from 'react';
-import { Music } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="py-20 bg-slate-950 border-t border-white/5">
-      <div className="container mx-auto px-6 text-center">
-        <div className="flex justify-center items-center gap-3 text-white font-black text-3xl tracking-tighter mb-8">
-          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-fuchsia-600 rounded-xl flex items-center justify-center">
-            <Music className="w-7 h-7" />
+    <footer id="contact" className="py-16 hairline">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div>
+            <a href="#home" className="flex items-center gap-2 text-white font-bold text-lg tracking-tight mb-3">
+              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              melodycraft
+            </a>
+            <p className="text-neutral-500 max-w-sm leading-relaxed">
+              Custom songs, written and produced just for you. Delivered in 24 hours.
+            </p>
           </div>
-          MelodyCraft
+
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-neutral-400">
+            <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
+            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            <a href="mailto:hello@melodycraft.org" className="hover:text-white transition-colors">Support</a>
+          </div>
         </div>
-        <p className="text-slate-500 max-w-md mx-auto mb-10 leading-relaxed font-medium">
-          Professional custom music for everyone. Studio-quality songs, delivered in 24 hours.
-        </p>
-        <div className="flex flex-wrap justify-center gap-8 text-slate-400 font-bold uppercase tracking-widest text-xs mb-10">
-          <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
-          <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-          <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
-          <a href="mailto:hello@melodycraft.com" className="hover:text-white transition-colors">Support</a>
+
+        <div className="mt-12 pt-8 border-t border-white/8 text-sm text-neutral-600">
+          © {year} MelodyCraft. All rights reserved.
         </div>
-        <p className="text-slate-700 text-xs font-bold uppercase tracking-widest">
-          © {year} MelodyCraft Inc. All rights reserved.
-        </p>
       </div>
     </footer>
   );

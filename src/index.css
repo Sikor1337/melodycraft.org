@@ -2,44 +2,29 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --bg-slate-950: #020617;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--bg-slate-950);
-  color: white;
+  background-color: #0a0a0b;
+  color: #fafafa;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Restrained surface used on cards and panels — subtle, no heavy blur. */
+.surface {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.hero-gradient {
-  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 100%);
-}
-
-.text-gradient {
-  background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* Thin top hairline used to separate full-width sections. */
+.hairline {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 @keyframes fade-in {
@@ -53,22 +38,12 @@ body {
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 
 .animate-shake {
   animation: shake 0.4s ease-in-out;
-}
-
-@keyframes gradient-x {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 6s ease infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

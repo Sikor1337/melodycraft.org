@@ -1,33 +1,26 @@
 # MelodyCraft
 
-The easiest way to create custom, studio-quality songs using AI and professional producers — delivered in 24 hours.
+Custom songs, written and produced just for you — studio quality, delivered in 24 hours.
 
-A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS v4) with two AI-powered features backed by Google Gemini:
-
-- **Song Builder** — generates a custom song concept (title, mood, lyrics, instrumentation) from the user's story and genre.
-- **Art Studio** — AI image editing for cover art.
+A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS v4). Visitors browse the offering, submit a song brief through the order form, and check out. There is no backend and no AI integration — login, the order form, and checkout are front-end demo flows.
 
 ## Run Locally
 
-1. **Prerequisites:** Node.js v18+ and a [Google Gemini API key](https://aistudio.google.com/apikey).
+1. **Prerequisites:** Node.js v18+.
 
 2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Configure your API key:** create a `.env` file in the project root:
-   ```
-   VITE_API_KEY=your_gemini_api_key_here
-   ```
-   Vite injects this as `process.env.API_KEY` at build time (see `vite.config.ts`). `.env` is gitignored. Without a key the site renders fine, but the two AI features will fail when called.
-
-4. **Start the dev server:**
+3. **Start the dev server:**
    ```bash
    npm run dev
    ```
 
-   **Windows shortcut:** double-click **`start-dev.bat`** in the project root — it installs dependencies (first run only), starts the server on `http://127.0.0.1:3000/`, and opens your browser. Double-click **`stop-dev.bat`** to stop it. (Port 3000 with an explicit IPv4 host avoids a `localhost` IPv4/IPv6 conflict that can otherwise cause "can't connect".)
+   **Windows shortcut:** double-click **`start-dev.bat`** — it installs dependencies (first run only), starts the server on `http://127.0.0.1:3000/`, and opens your browser. Double-click **`stop-dev.bat`** to stop it.
+
+No API keys or environment variables are required.
 
 ## Scripts
 
@@ -41,11 +34,11 @@ A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS 
 ## Project Structure
 
 - `src/App.tsx` — the entire page; composes all sections and manages modal state.
-- `src/components/` — all UI components (single source of truth).
-- `src/services/geminiService.ts` — the only Gemini integration layer.
+- `src/components/` — all UI components.
+- `src/types.ts` — shared order/pricing types.
 
-See `CLAUDE.md` for architecture details.
+See `CLAUDE.md` for architecture and design-system details.
 
 ## Deployment
 
-Ready to deploy on **Vercel** or **Netlify**: connect the repository and add `VITE_API_KEY` as an environment variable in the dashboard. Build command `npm run build`, output directory `dist`.
+Deployed to **GitHub Pages** via the workflow in `.github/workflows/deploy.yml`, which builds with Vite and publishes `dist/`. One-time setup: in the repository **Settings → Pages**, set **Source** to **GitHub Actions**. The site is served from `https://sikor1337.github.io/melodycraft.org/` (Vite `base` is set accordingly); point a custom domain at the root and change `base` to `'/'` if desired.
