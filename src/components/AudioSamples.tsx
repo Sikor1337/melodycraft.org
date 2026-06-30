@@ -22,12 +22,6 @@ const SAMPLES = [
   },
 ];
 
-const PLATFORMS = [
-  { name: 'Apple Music', href: '#' },
-  { name: 'YouTube Music', href: '#' },
-  { name: 'Amazon Music', href: '#' },
-];
-
 export const AudioSamples: React.FC = () => {
   return (
     <section id="samples" className="py-20 md:py-28 hairline">
@@ -38,7 +32,7 @@ export const AudioSamples: React.FC = () => {
             Real instruments. Real vocals.
           </h2>
           <p className="text-lg text-stone-400 leading-relaxed">
-            A few tracks from the studio — mastered to a release-ready standard. Press play.
+            Press play to hear the production quality we deliver on every order.
           </p>
         </div>
 
@@ -60,14 +54,9 @@ export const AudioSamples: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-10 text-sm">
-          <span className="text-stone-500">Also on</span>
-          {PLATFORMS.map((p) => (
-            <a key={p.name} href={p.href} className="text-stone-300 hover:text-accent transition-colors font-medium">
-              {p.name}
-            </a>
-          ))}
-        </div>
+        <p className="text-sm text-stone-600 mt-10">
+          Sample players shown for layout — MelodyCraft's own releases go here.
+        </p>
       </div>
     </section>
   );
