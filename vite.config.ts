@@ -17,12 +17,13 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.API_KEY': JSON.stringify(env.VITE_API_KEY || process.env.API_KEY || ""),
     },
-    base: '/',
+    // Served from https://sikor1337.github.io/melodycraft.org/ — assets need this
+    // sub-path prefix. If you later point a custom domain (e.g. melodycraft.org)
+    // at the root, change this back to '/'.
+    base: '/melodycraft.org/',
     build: {
       outDir: 'dist',
       sourcemap: false,
     },
-    // Jeśli używasz GitHub Pages, ustaw tutaj '/nazwa-repo/'
-    // base: '/', 
   };
 });
