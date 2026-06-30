@@ -18,7 +18,7 @@ A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS 
    npm run dev
    ```
 
-   **Windows shortcut:** double-click **`start-dev.bat`** — it installs dependencies (first run only), starts the server on `http://127.0.0.1:3000/`, and opens your browser. Double-click **`stop-dev.bat`** to stop it.
+   **Windows shortcut:** double-click **`start-dev.bat`** — it installs dependencies (first run only), starts the server on `http://127.0.0.1:3000/melodycraft.org/`, and opens your browser. Double-click **`stop-dev.bat`** to stop it.
 
 No API keys or environment variables are required.
 
@@ -41,4 +41,11 @@ See `CLAUDE.md` for architecture and design-system details.
 
 ## Deployment
 
-Deployed to **GitHub Pages** via the workflow in `.github/workflows/deploy.yml`, which builds with Vite and publishes `dist/`. One-time setup: in the repository **Settings → Pages**, set **Source** to **GitHub Actions**. The site is served from `https://sikor1337.github.io/melodycraft.org/` (Vite `base` is set accordingly); point a custom domain at the root and change `base` to `'/'` if desired.
+Deployed to **GitHub Pages from the `main` branch's `/docs` folder** (the Actions-based
+deploy was bypassed). `vite.config.ts` sets `outDir: 'docs'`, and the built `docs/`
+folder is committed to `main`. To publish, run **`deploy.bat`** (build → commit `docs/`
+→ push) — there is no automatic deploy on push. One-time setup: in **Settings → Pages**,
+set **Source** to **Deploy from a branch → `main` → `/docs`**. The site is served from
+`https://sikor1337.github.io/melodycraft.org/` (Vite `base` is set accordingly); point a
+custom domain at the root and change `base` to `'/'` if desired. `docs/` is generated
+output — never edit it by hand.

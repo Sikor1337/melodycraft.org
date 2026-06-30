@@ -17,7 +17,7 @@
 
 🔗 **Strona na żywo:** https://sikor1337.github.io/melodycraft.org/
 
-> Po każdej zmianie strona aktualizuje się automatycznie (zwykle w ~2 minuty).
+> Publikacja zmian jest **ręczna** — po edycji uruchamiamy `deploy.bat`, a strona aktualizuje się w ~1–2 minuty.
 
 ---
 
@@ -40,7 +40,7 @@
 To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do realnych systemów:
 
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
-- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 2 linków** z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
+- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 3 linków** (po jednym na pakiet: Personal, Pro Release, Signature) z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
 - 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników.
 - 📨 **Zamówienia** — po „zakupie" zamówienie **nie trafia jeszcze nigdzie** (brak bazy danych / maila). Do podłączenia.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
@@ -96,7 +96,7 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 
 - **Z czego zrobiona:** nowoczesny zestaw narzędzi do stron internetowych (React + Vite + Tailwind). To standard branżowy — łatwo rozwijać i utrzymywać.
 - **Gdzie stoi:** GitHub Pages — hosting **darmowy**. Po podłączeniu płatności/bazy danych dojdą niewielkie koszty usług (np. Stripe pobiera prowizję od transakcji).
-- **Aktualizacje:** każda zmiana w kodzie automatycznie publikuje nową wersję strony — bez ręcznego „wgrywania".
+- **Aktualizacje:** zmiany publikujemy poleceniem `deploy.bat`, które buduje stronę i wysyła ją na GitHub Pages (folder `docs/` na gałęzi `main`).
 - **Bezpieczeństwo:** strona nie przechowuje na razie żadnych danych klientów ani płatności (bo to jeszcze wersja pokazowa).
 
 ---

@@ -17,7 +17,7 @@
 
 🔗 **Live site:** https://sikor1337.github.io/melodycraft.org/
 
-> After every change, the site updates automatically (usually within ~2 minutes).
+> Publishing is **manual** — after editing we run `deploy.bat`, and the site updates within ~1–2 minutes.
 
 ---
 
@@ -40,7 +40,7 @@
 These look and click like the real thing, but are **not yet connected** to real systems:
 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
-- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **2 Payment Links** pasted in from our Stripe account; until then an "Email my order" fallback is shown.
+- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **3 Payment Links** (one per plan: Personal, Pro Release, Signature) pasted in from our Stripe account; until then an "Email my order" fallback is shown.
 - 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet.
 - 📨 **Orders** — after a "purchase," the order **doesn't go anywhere yet** (no database / email). To be connected.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.
@@ -96,7 +96,7 @@ To kick off **Phase 1**, it would help to have:
 
 - **What it's built with:** a modern web toolkit (React + Vite + Tailwind). It's an industry standard — easy to develop and maintain.
 - **Where it's hosted:** GitHub Pages — **free** hosting. Once payments/database are connected, there will be small service costs (e.g., Stripe takes a fee per transaction).
-- **Updates:** every code change automatically publishes a new version of the site — no manual "uploading."
+- **Updates:** changes are published by running `deploy.bat`, which builds the site and pushes it to GitHub Pages (the `docs/` folder on the `main` branch).
 - **Security:** the site currently stores no customer data or payments (because it's still a demo version).
 
 ---
