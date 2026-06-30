@@ -1,6 +1,8 @@
 # MelodyCraft — opis projektu i plan rozwoju
 
 > Dokument dla osób nietechnicznych. Tłumaczy **czym jest strona**, **co już działa**, **co jest tylko na pokaz** i **co planujemy dalej**.
+>
+> 🇺🇸 English version: [`PROJECT.md`](./PROJECT.md)
 
 ---
 
