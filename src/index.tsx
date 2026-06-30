@@ -14,16 +14,7 @@ interface ErrorBoundaryState {
 
 // Simple Error Boundary to catch render crashes
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  // Fix: Explicitly declare state and props to satisfy the TypeScript compiler
-  public state: ErrorBoundaryState;
-  public props: ErrorBoundaryProps;
-
-  // Explicitly defined constructor ensures this.props is correctly recognized by TypeScript
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false, error: null };
-    this.props = props;
-  }
+  state: ErrorBoundaryState = { hasError: false, error: null };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };

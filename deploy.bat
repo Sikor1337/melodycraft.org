@@ -1,8 +1,8 @@
 @echo off
 REM ============================================================
-REM  MelodyCraft - publish to GitHub Pages (gh-pages branch)
-REM  Builds the site locally and force-pushes dist/ to gh-pages.
-REM  Pages Source must be set to: Deploy from a branch -> gh-pages -> / (root)
+REM  MelodyCraft - publish to GitHub Pages (main branch /docs)
+REM  Builds into docs/ and commits it to main. Single branch.
+REM  Pages Source must be: Deploy from a branch -> main -> /docs
 REM  Live at https://sikor1337.github.io/melodycraft.org/ (~1 min after push)
 REM ============================================================
 
@@ -17,18 +17,12 @@ if errorlevel 1 (
   exit /b 1
 )
 
-REM Prevent GitHub Pages from running Jekyll on the output.
-type nul > dist\.nojekyll
+REM Stop GitHub Pages from running Jekyll on the output.
+type nul > docs\.nojekyll
 
-cd dist
-if exist .git rmdir /s /q .git
-git init -q
-git checkout -q -b gh-pages
-git add -A
-git commit -q -m "Deploy %date% %time%"
-git remote add origin https://github.com/Sikor1337/melodycraft.org.git
-git push -f origin gh-pages
-cd ..
+git add docs
+git commit -m "Build site (docs) %date% %time%"
+git push origin main
 
 echo.
 echo ============================================================

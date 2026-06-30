@@ -13,7 +13,10 @@ export default defineConfig({
   // at the root, change this back to '/'.
   base: '/melodycraft.org/',
   build: {
-    outDir: 'dist',
+    // Output into docs/ so GitHub Pages can serve from main → /docs
+    // (single branch, no separate gh-pages branch).
+    outDir: 'docs',
+    emptyOutDir: true,
     sourcemap: false,
   },
   test: {

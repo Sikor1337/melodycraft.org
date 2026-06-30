@@ -5,7 +5,7 @@ import { Tier } from './types';
  *
  * How to get them:
  *   1. Stripe Dashboard → Product catalog → Payment Links → "New".
- *   2. Create one link per plan (Personal $49, Pro Release $99).
+ *   2. Create one link per plan (Personal $49, Pro Release $99, Signature $199).
  *   3. (Recommended) Under "After payment", set the success URL to:
  *        https://sikor1337.github.io/melodycraft.org/?paid=1
  *   4. Copy each link (looks like https://buy.stripe.com/xxxxxxxx) and paste below.

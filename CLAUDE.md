@@ -45,13 +45,13 @@ When adding UI, follow these tokens rather than reintroducing `glass`, `indigo/f
 
 ## Deployment
 
-Deployed to **GitHub Pages from the `gh-pages` branch** (the Actions-based deploy
-kept failing on CI for reasons that couldn't be read without the dashboard, so it
-was bypassed). To publish: run **`deploy.bat`** (or `npm run build` then force-push
-`dist/` to `gh-pages`). The repo's Pages **Source must be "Deploy from a branch" →
-`gh-pages` → `/ (root)`**. `.github/workflows/deploy.yml` is kept but no longer runs
-on push (manual `workflow_dispatch` only). `vite.config.ts` sets `base:
-'/melodycraft.org/'` because the project is served from
-`https://sikor1337.github.io/melodycraft.org/`; if a custom domain is pointed at the
-root later, change `base` back to `'/'`. The `gh-pages` branch is generated output —
-never edit it by hand.
+Deployed to **GitHub Pages from `main` → `/docs`** — everything lives on one branch.
+The Actions-based deploy kept failing on CI (unreadable without the dashboard), so it
+was bypassed: `vite.config.ts` sets `outDir: 'docs'`, and `docs/` (the built output)
+is committed to `main`. To publish: run **`deploy.bat`** (build → commit `docs/` →
+push), or `npm run build` then commit `docs/`. The repo's Pages **Source must be
+"Deploy from a branch" → `main` → `/docs`**. `.github/workflows/deploy.yml` is kept
+but no longer runs on push (manual `workflow_dispatch` only). `base` is
+`'/melodycraft.org/'` (served from `https://sikor1337.github.io/melodycraft.org/`);
+change to `'/'` if a custom domain is pointed at the root. `docs/` is generated —
+never edit it by hand; re-run `deploy.bat`.
