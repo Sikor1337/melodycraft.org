@@ -2,10 +2,11 @@ name: CI
 
 # Quality checks run independently of the Pages deploy so a flaky/failing
 # check never blocks the site from going live. See deploy.yml for deployment.
+# Runs on PRs only (not every push to main) to keep Actions usage minimal —
+# main pushes trigger just the deploy workflow.
 on:
-  push:
-    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
