@@ -40,7 +40,7 @@
 These look and click like the real thing, but are **not yet connected** to real systems:
 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
-- 💳 **Payment** — the card form is visual only; it **does not charge anything**. A payment gateway (e.g., Stripe) needs to be connected.
+- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **2 Payment Links** pasted in from our Stripe account; until then an "Email my order" fallback is shown.
 - 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet.
 - 📨 **Orders** — after a "purchase," the order **doesn't go anywhere yet** (no database / email). To be connected.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.

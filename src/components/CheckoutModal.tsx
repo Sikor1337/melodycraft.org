@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Lock, CheckCircle, Loader2 } from 'lucide-react';
+import { X, Lock, Loader2, Mail } from 'lucide-react';
 import { OrderItem } from '../types';
+import { STRIPE_PAYMENT_LINKS, CONTACT_EMAIL } from '../config';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -10,24 +11,50 @@ interface CheckoutModalProps {
 }
 
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, item }) => {
-  const [step, setStep] = useState<'form' | 'processing' | 'success'>('form');
+  const [redirecting, setRedirecting] = useState(false);
 
   if (!isOpen || !item) return null;
 
   const isPremium = item.tier === 'premium';
-
-  const handlePay = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStep('processing');
-    // Demo flow — a real backend would create the order and a payment intent here.
-    setTimeout(() => setStep('success'), 1800);
-  };
+  const paymentLink = STRIPE_PAYMENT_LINKS[item.tier];
 
   const summaryParts = [
     item.order.genre,
     item.order.occasion,
     item.order.forWhom && `for ${item.order.forWhom}`,
   ].filter(Boolean);
+
+  const handlePay = () => {
+    if (!paymentLink) return;
+    setRedirecting(true);
+    // Short reference so the order can be matched in Stripe; stash the brief
+    // locally so it can be recovered/sent after the customer returns.
+    const ref = `MC-${Date.now().toString(36).toUpperCase()}`;
+    try {
+      localStorage.setItem(`mc_order_${ref}`, JSON.stringify({ ...item.order, tier: item.tier, price: item.price }));
+    } catch {
+      /* ignore storage failures */
+    }
+    const sep = paymentLink.includes('?') ? '&' : '?';
+    window.location.href = `${paymentLink}${sep}client_reference_id=${ref}`;
+  };
+
+  // Fallback when no Payment Link is configured yet: let the customer email the brief.
+  const mailtoHref = (() => {
+    const subject = `Custom song order — ${isPremium ? 'Pro Release' : 'Custom Song'} ($${item.price})`;
+    const body = [
+      `Plan: ${isPremium ? 'Pro Release' : 'Personal'} ($${item.price})`,
+      `Style: ${item.order.genre}`,
+      item.order.occasion && `Occasion: ${item.order.occasion}`,
+      item.order.forWhom && `For: ${item.order.forWhom}`,
+      '',
+      'Story:',
+      item.order.story,
+    ]
+      .filter(Boolean)
+      .join('\n');
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  })();
 
   return (
     <motion.div
@@ -42,100 +69,60 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
         exit={{ scale: 0.96, opacity: 0, y: 16 }}
         className="surface bg-stone-950 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden flex flex-col"
       >
-        {step === 'form' && (
-          <>
-            <div className="px-7 py-6 border-b border-white/8 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-white tracking-tight">Checkout</h2>
-              <button onClick={onClose} aria-label="Close" className="p-2 -mr-2 hover:bg-white/5 rounded-lg transition-colors">
-                <X className="w-5 h-5 text-stone-500" />
-              </button>
+        <div className="px-7 py-6 border-b border-white/8 flex justify-between items-center">
+          <h2 className="text-xl font-bold text-white tracking-tight">Checkout</h2>
+          <button onClick={onClose} aria-label="Close" className="p-2 -mr-2 hover:bg-white/5 rounded-lg transition-colors">
+            <X className="w-5 h-5 text-stone-500" />
+          </button>
+        </div>
+
+        <div className="p-7 space-y-7">
+          <div className="surface rounded-xl p-5">
+            <div className="flex justify-between items-baseline">
+              <span className="font-semibold text-white">{isPremium ? 'Pro Release' : 'Custom Song'}</span>
+              <span className="text-xl font-bold text-accent">${item.price}</span>
             </div>
-
-            <div className="p-7 space-y-7">
-              <div className="surface rounded-xl p-5">
-                <div className="flex justify-between items-baseline">
-                  <span className="font-semibold text-white">
-                    {isPremium ? 'Pro Release' : 'Custom Song'}
-                  </span>
-                  <span className="text-xl font-bold text-accent">${item.price}</span>
-                </div>
-                {summaryParts.length > 0 && (
-                  <p className="text-sm text-stone-500 mt-2 capitalize">{summaryParts.join(' · ')}</p>
-                )}
-              </div>
-
-              <form onSubmit={handlePay} className="space-y-5">
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-stone-300">Card number</label>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    placeholder="0000 0000 0000 0000"
-                    required
-                    className="w-full px-4 py-3 rounded-lg surface text-white font-mono placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-stone-300">Expiry</label>
-                    <input
-                      type="text"
-                      placeholder="MM/YY"
-                      required
-                      className="w-full px-4 py-3 rounded-lg surface text-white font-mono placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-stone-300">CVC</label>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      placeholder="123"
-                      required
-                      className="w-full px-4 py-3 rounded-lg surface text-white font-mono placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-accent hover:bg-accent/90 text-stone-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  <Lock className="w-4 h-4" />
-                  Pay ${item.price}
-                </button>
-                <p className="text-center text-xs text-stone-600">Demo checkout — no real payment is processed.</p>
-              </form>
-            </div>
-          </>
-        )}
-
-        {step === 'processing' && (
-          <div className="p-16 flex flex-col items-center justify-center text-center gap-5">
-            <Loader2 className="w-12 h-12 text-accent animate-spin" />
-            <p className="text-stone-400 font-medium">Processing…</p>
+            {summaryParts.length > 0 && (
+              <p className="text-sm text-stone-500 mt-2 capitalize">{summaryParts.join(' · ')}</p>
+            )}
           </div>
-        )}
 
-        {step === 'success' && (
-          <div className="p-12 flex flex-col items-center justify-center text-center gap-6 animate-fade-in">
-            <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-8 h-8 text-accent" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white tracking-tight mb-2">Order confirmed</h3>
-              <p className="text-stone-400 max-w-xs mx-auto leading-relaxed">
-                Your brief is with our production team. Expect your first draft within 24 hours.
+          {paymentLink ? (
+            <div className="space-y-4">
+              <button
+                onClick={handlePay}
+                disabled={redirecting}
+                className="w-full py-4 bg-accent hover:bg-accent/90 text-stone-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
+              >
+                {redirecting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" /> Redirecting…
+                  </>
+                ) : (
+                  <>
+                    <Lock className="w-4 h-4" /> Pay ${item.price} with Stripe
+                  </>
+                )}
+              </button>
+              <p className="text-center text-xs text-stone-500">
+                You'll be taken to Stripe's secure checkout. Cards, Apple Pay & Google Pay supported.
               </p>
             </div>
-            <button
-              onClick={onClose}
-              className="w-full py-3.5 bg-white text-stone-950 font-semibold rounded-lg hover:bg-stone-200 transition-colors"
-            >
-              Done
-            </button>
-          </div>
-        )}
+          ) : (
+            <div className="space-y-4">
+              <div className="px-4 py-3 rounded-lg bg-accent/10 border border-accent/20 text-sm text-stone-300 leading-relaxed">
+                Online payments are being set up. To place this order now, send us your brief and we'll
+                reply with a secure payment link.
+              </div>
+              <a
+                href={mailtoHref}
+                className="w-full py-4 bg-accent hover:bg-accent/90 text-stone-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <Mail className="w-4 h-4" /> Email my order
+              </a>
+            </div>
+          )}
+        </div>
       </motion.div>
     </motion.div>
   );

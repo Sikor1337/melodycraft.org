@@ -40,7 +40,7 @@
 To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do realnych systemów:
 
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
-- 💳 **Płatność** — formularz karty jest tylko wizualny, **nie pobiera pieniędzy**. Do podłączenia bramka płatności (np. Stripe).
+- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 2 linków** z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
 - 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników.
 - 📨 **Zamówienia** — po „zakupie" zamówienie **nie trafia jeszcze nigdzie** (brak bazy danych / maila). Do podłączenia.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
