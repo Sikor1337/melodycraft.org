@@ -29,6 +29,20 @@ const PLANS = [
     ],
     featured: true,
   },
+  {
+    tier: 'signature' as Tier,
+    name: 'Signature',
+    price: 199,
+    note: 'per track',
+    features: [
+      'Everything in Pro Release',
+      'Lyric video for social media',
+      'Up to 5 revisions',
+      'Same-day express delivery',
+      '1-on-1 call with your producer',
+    ],
+    featured: false,
+  },
 ];
 
 export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
@@ -43,7 +57,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
           <p className="text-lg text-stone-400">No subscriptions, no hidden fees.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl">
           {PLANS.map((plan) => (
             <div
               key={plan.tier}
@@ -51,7 +65,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                 plan.featured ? 'bg-accent/[0.06] border border-accent/25' : 'surface'
               }`}
             >
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-6 min-h-7">
                 <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
                 {plan.featured && (
                   <span className="text-xs font-semibold text-accent border border-accent/30 rounded-full px-3 py-1">

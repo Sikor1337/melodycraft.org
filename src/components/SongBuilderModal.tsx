@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
-import { SongOrder, Tier, TIER_PRICE } from '../types';
+import { SongOrder, Tier, TIER_PRICE, TIER_LABEL, TIER_NOTE } from '../types';
 
 interface SongBuilderModalProps {
   isOpen: boolean;
@@ -39,7 +39,6 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
   if (!isOpen) return null;
 
   const price = TIER_PRICE[selectedTier];
-  const isPremium = selectedTier === 'premium';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +69,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
         <div className="px-7 py-6 border-b border-white/8 flex justify-between items-start">
           <div>
             <p className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-1">
-              {isPremium ? 'Pro Release' : 'Custom Song'}
+              {TIER_LABEL[selectedTier]}
             </p>
             <h2 className="text-2xl font-bold text-white tracking-tight">Tell us about your song</h2>
           </div>
@@ -148,7 +147,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
           </button>
 
           <p className="text-center text-xs text-stone-600">
-            You won't be charged yet · {isPremium ? 'Full commercial rights & distribution' : 'Personal-use license'}
+            You won't be charged yet · {TIER_NOTE[selectedTier]}
           </p>
         </form>
       </motion.div>

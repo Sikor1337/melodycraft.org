@@ -29,7 +29,7 @@
 | "How it works" | ✅ Done | 3 steps: share your story → we produce it → you receive it |
 | Music samples | ✅ Done | Spotify players embedded on the page (*currently placeholders*) |
 | Customer reviews | ✅ Done | 3 testimonials (*currently placeholders*) |
-| Pricing | ✅ Done | Two plans: **Personal $49** and **Pro Release $99** |
+| Pricing | ✅ Done | Three plans (*good-better-best* strategy): **Personal $49**, **Pro Release $99** (most popular) and **Signature $199** (anchor — makes $99 look like great value) |
 | Order form | ✅ Done | Style, occasion, who it's for, story → proceed to checkout |
 | FAQ | ✅ Done | 5 questions and answers |
 | Mobile version | ✅ Done | Fully responsive + a "hamburger" menu |

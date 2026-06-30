@@ -3,9 +3,9 @@ import { render, screen, cleanup } from '@testing-library/react';
 import { CheckoutModal } from './CheckoutModal';
 import type { OrderItem } from '../types';
 
-// Mock the Stripe config: standard has a Payment Link, premium does not.
+// Mock the Stripe config: standard has a Payment Link, the others don't.
 vi.mock('../config', () => ({
-  STRIPE_PAYMENT_LINKS: { standard: 'https://buy.stripe.com/test_abc123', premium: '' },
+  STRIPE_PAYMENT_LINKS: { standard: 'https://buy.stripe.com/test_abc123', premium: '', signature: '' },
   CONTACT_EMAIL: 'hello@melodycraft.org',
 }));
 

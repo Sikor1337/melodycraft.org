@@ -29,7 +29,7 @@
 | „Jak to działa" | ✅ Gotowe | 3 kroki: opowiedz historię → produkujemy → odbierasz |
 | Próbki muzyki | ✅ Gotowe | Odtwarzacze Spotify osadzone na stronie (*na razie przykładowe*) |
 | Opinie klientów | ✅ Gotowe | 3 referencje (*na razie przykładowe*) |
-| Cennik | ✅ Gotowe | Dwa pakiety: **Personal $49** i **Pro Release $99** |
+| Cennik | ✅ Gotowe | Trzy pakiety (strategia *good-better-best*): **Personal $49**, **Pro Release $99** (najpopularniejszy) i **Signature $199** (kotwica — sprawia, że $99 wygląda na świetną ofertę) |
 | Formularz zamówienia | ✅ Gotowe | Styl, okazja, dla kogo, historia → przejście do płatności |
 | Najczęstsze pytania (FAQ) | ✅ Gotowe | 5 pytań i odpowiedzi |
 | Wersja mobilna | ✅ Gotowe | Pełne dopasowanie do telefonu + menu „hamburger" |

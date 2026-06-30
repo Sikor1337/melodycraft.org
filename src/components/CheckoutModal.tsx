@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Lock, Loader2, Mail } from 'lucide-react';
-import { OrderItem } from '../types';
+import { OrderItem, TIER_LABEL } from '../types';
 import { STRIPE_PAYMENT_LINKS, CONTACT_EMAIL } from '../config';
 
 interface CheckoutModalProps {
@@ -15,7 +15,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
 
   if (!isOpen || !item) return null;
 
-  const isPremium = item.tier === 'premium';
+  const label = TIER_LABEL[item.tier];
   const paymentLink = STRIPE_PAYMENT_LINKS[item.tier];
 
   const summaryParts = [
@@ -41,9 +41,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
 
   // Fallback when no Payment Link is configured yet: let the customer email the brief.
   const mailtoHref = (() => {
-    const subject = `Custom song order — ${isPremium ? 'Pro Release' : 'Custom Song'} ($${item.price})`;
+    const subject = `Custom song order — ${label} ($${item.price})`;
     const body = [
-      `Plan: ${isPremium ? 'Pro Release' : 'Personal'} ($${item.price})`,
+      `Plan: ${label} ($${item.price})`,
       `Style: ${item.order.genre}`,
       item.order.occasion && `Occasion: ${item.order.occasion}`,
       item.order.forWhom && `For: ${item.order.forWhom}`,
@@ -79,7 +79,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
         <div className="p-7 space-y-7">
           <div className="surface rounded-xl p-5">
             <div className="flex justify-between items-baseline">
-              <span className="font-semibold text-white">{isPremium ? 'Pro Release' : 'Custom Song'}</span>
+              <span className="font-semibold text-white">{label}</span>
               <span className="text-xl font-bold text-accent">${item.price}</span>
             </div>
             {summaryParts.length > 0 && (

@@ -16,6 +16,7 @@ import { Tier } from './types';
 export const STRIPE_PAYMENT_LINKS: Record<Tier, string> = {
   standard: '', // Personal — $49
   premium: '', // Pro Release — $99
+  signature: '', // Signature — $199
 };
 
 /** Email used as a fallback when a Payment Link isn't configured yet. */
