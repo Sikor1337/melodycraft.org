@@ -2,6 +2,10 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* Single boutique accent — a soft, refined gold. */
+  --color-accent: #e0b65c;
 }
 
 :root {
@@ -9,11 +13,17 @@
 }
 
 body {
-  background-color: #0a0a0b;
-  color: #fafafa;
+  background-color: #0b0a09;
+  color: #f5f1ea;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif display headings get optical sizing and tighter tracking. */
+.font-display {
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
 }
 
 /* Restrained surface used on cards and panels — subtle, no heavy blur. */
@@ -24,7 +34,7 @@ body {
 
 /* Thin top hairline used to separate full-width sections. */
 .hairline {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 @keyframes fade-in {

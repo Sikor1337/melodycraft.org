@@ -27,8 +27,8 @@ export const Testimonials: React.FC = () => {
     <section id="testimonials" className="py-28 hairline">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
-          <p className="text-sm font-medium text-amber-400 mb-4">Customers</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <p className="text-sm font-medium text-accent mb-4">Customers</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium text-white">
             People send us their stories. We send back songs.
           </h2>
         </div>
@@ -43,14 +43,14 @@ export const Testimonials: React.FC = () => {
               transition={{ delay: idx * 0.1 }}
               className="surface rounded-2xl p-8 flex flex-col"
             >
-              <blockquote className="text-lg text-neutral-200 leading-relaxed flex-1">"{t.quote}"</blockquote>
+              <blockquote className="text-lg text-stone-200 leading-relaxed flex-1">"{t.quote}"</blockquote>
               <figcaption className="mt-7 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-amber-400/15 text-amber-400 flex items-center justify-center text-sm font-semibold">
+                <div className="w-9 h-9 rounded-full bg-accent/15 text-accent flex items-center justify-center text-sm font-semibold">
                   {t.author.charAt(0)}
                 </div>
                 <div>
                   <div className="font-semibold text-white text-sm">{t.author}</div>
-                  <div className="text-sm text-neutral-500">{t.role}</div>
+                  <div className="text-sm text-stone-500">{t.role}</div>
                 </div>
               </figcaption>
             </motion.figure>

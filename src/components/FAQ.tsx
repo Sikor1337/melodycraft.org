@@ -32,8 +32,8 @@ export const FAQ: React.FC = () => {
     <section id="faq" className="py-28 hairline">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="mb-12">
-          <p className="text-sm font-medium text-amber-400 mb-4">FAQ</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Questions, answered.</h2>
+          <p className="text-sm font-medium text-accent mb-4">FAQ</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium text-white">Questions, answered.</h2>
         </div>
 
         <div className="divide-y divide-white/8 border-t border-b border-white/8">
@@ -49,7 +49,7 @@ export const FAQ: React.FC = () => {
                 >
                   <span className="text-lg font-medium text-white">{item.q}</span>
                   <Plus
-                    className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
+                    className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
                   />
                 </button>
                 <AnimatePresence initial={false}>
@@ -61,7 +61,7 @@ export const FAQ: React.FC = () => {
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 text-neutral-400 leading-relaxed max-w-2xl">{item.a}</p>
+                      <p className="pb-6 text-stone-400 leading-relaxed max-w-2xl">{item.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

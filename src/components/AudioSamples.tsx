@@ -1,63 +1,73 @@
-import React, { useState } from 'react';
-import { Play, Pause } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { SpotifyEmbed } from './SpotifyEmbed';
 
+// PLACEHOLDERS — swap each src for one of the studio's own Spotify track/playlist
+// embed links. Title/genre are just captions shown above each player.
 const SAMPLES = [
-  { id: 1, title: 'Anniversary Ballad', genre: 'Pop · Piano', duration: '0:30' },
-  { id: 2, title: 'Birthday Hype', genre: 'Hip Hop', duration: '0:30' },
-  { id: 3, title: 'Late Night', genre: 'Lo-Fi', duration: '0:30' },
+  {
+    title: 'Anniversary Ballad',
+    genre: 'Pop · Piano',
+    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0',
+  },
+  {
+    title: 'Birthday Hype',
+    genre: 'Hip Hop',
+    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd?utm_source=generator&theme=0',
+  },
+  {
+    title: 'Wedding First Dance',
+    genre: 'Acoustic',
+    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX1lVhptIYRda?utm_source=generator&theme=0',
+  },
+];
+
+const PLATFORMS = [
+  { name: 'Apple Music', href: '#' },
+  { name: 'YouTube Music', href: '#' },
+  { name: 'Amazon Music', href: '#' },
 ];
 
 export const AudioSamples: React.FC = () => {
-  const [playing, setPlaying] = useState<number | null>(null);
-
-  const togglePlay = (id: number) => setPlaying((current) => (current === id ? null : id));
-
   return (
     <section id="samples" className="py-28 hairline">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mb-14">
-          <p className="text-sm font-medium text-amber-400 mb-4">Samples</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+          <p className="text-sm font-medium text-accent mb-4">Listen</p>
+          <h2 className="font-display text-4xl md:text-6xl font-medium text-white mb-4 leading-[1.05]">
             Real instruments. Real vocals.
           </h2>
-          <p className="text-lg text-neutral-400 leading-relaxed">
-            A few tracks our producers have made — mastered to a release-ready standard.
+          <p className="text-lg text-stone-400 leading-relaxed">
+            A few tracks from the studio — mastered to a release-ready standard. Press play.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {SAMPLES.map((sample) => {
-            const isPlaying = playing === sample.id;
-            return (
-              <div key={sample.id} className="surface rounded-2xl p-6">
-                <div className="flex items-center gap-4">
-                  <button
-                    type="button"
-                    onClick={() => togglePlay(sample.id)}
-                    aria-label={isPlaying ? `Pause ${sample.title}` : `Play ${sample.title}`}
-                    className="w-11 h-11 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 flex items-center justify-center transition-colors shrink-0"
-                  >
-                    {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current pl-0.5" />}
-                  </button>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-white truncate">{sample.title}</h3>
-                    <p className="text-sm text-neutral-500">{sample.genre}</p>
-                  </div>
-                  <span className="ml-auto text-sm font-mono text-neutral-600">{sample.duration}</span>
-                </div>
-                <div className="mt-5 h-1 bg-white/8 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full bg-amber-400 rounded-full transition-all ease-linear ${
-                      isPlaying ? 'w-full duration-[30000ms]' : 'w-0 duration-300'
-                    }`}
-                  />
-                </div>
+          {SAMPLES.map((sample, idx) => (
+            <motion.div
+              key={sample.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <div className="flex items-baseline justify-between mb-3">
+                <h3 className="font-semibold text-white">{sample.title}</h3>
+                <span className="text-sm text-stone-500">{sample.genre}</span>
               </div>
-            );
-          })}
+              <SpotifyEmbed src={sample.src} title={sample.title} />
+            </motion.div>
+          ))}
         </div>
 
-        <p className="text-sm text-neutral-600 mt-8">Demo previews — playback is illustrative.</p>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-10 text-sm">
+          <span className="text-stone-500">Also on</span>
+          {PLATFORMS.map((p) => (
+            <a key={p.name} href={p.href} className="text-stone-300 hover:text-accent transition-colors font-medium">
+              {p.name}
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

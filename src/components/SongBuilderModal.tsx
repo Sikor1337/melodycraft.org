@@ -65,23 +65,23 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
         initial={{ scale: 0.96, opacity: 0, y: 16 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.96, opacity: 0, y: 16 }}
-        className="surface bg-neutral-950 rounded-2xl w-full max-w-xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+        className="surface bg-stone-950 rounded-2xl w-full max-w-xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
       >
         <div className="px-7 py-6 border-b border-white/8 flex justify-between items-start">
           <div>
-            <p className="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em] mb-1">
+            <p className="text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-1">
               {isPremium ? 'Pro Release' : 'Custom Song'}
             </p>
             <h2 className="text-2xl font-bold text-white tracking-tight">Tell us about your song</h2>
           </div>
           <button onClick={onClose} aria-label="Close" className="p-2 -mr-2 hover:bg-white/5 rounded-lg transition-colors">
-            <X className="w-5 h-5 text-neutral-500" />
+            <X className="w-5 h-5 text-stone-500" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-7 overflow-y-auto space-y-8">
           <div className="space-y-3">
-            <label className="text-sm font-semibold text-neutral-300">Style</label>
+            <label className="text-sm font-semibold text-stone-300">Style</label>
             <div className="flex flex-wrap gap-2">
               {GENRES.map((g) => (
                 <button
@@ -90,8 +90,8 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
                   onClick={() => setGenre(g)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     genre === g
-                      ? 'bg-amber-400 text-neutral-950'
-                      : 'surface text-neutral-300 hover:text-white'
+                      ? 'bg-accent text-stone-950'
+                      : 'surface text-stone-300 hover:text-white'
                   }`}
                 >
                   {g}
@@ -102,34 +102,34 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
 
           <div className="grid sm:grid-cols-2 gap-5">
             <div className="space-y-3">
-              <label className="text-sm font-semibold text-neutral-300">Occasion <span className="text-neutral-600 font-normal">(optional)</span></label>
+              <label className="text-sm font-semibold text-stone-300">Occasion <span className="text-stone-600 font-normal">(optional)</span></label>
               <input
                 type="text"
                 value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
                 placeholder="Birthday, wedding, anniversary…"
-                className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+                className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
               />
             </div>
             <div className="space-y-3">
-              <label className="text-sm font-semibold text-neutral-300">Who is it for? <span className="text-neutral-600 font-normal">(optional)</span></label>
+              <label className="text-sm font-semibold text-stone-300">Who is it for? <span className="text-stone-600 font-normal">(optional)</span></label>
               <input
                 type="text"
                 value={forWhom}
                 onChange={(e) => setForWhom(e.target.value)}
                 placeholder="My wife, our team, myself…"
-                className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+                className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
               />
             </div>
           </div>
 
           <div className="space-y-3">
-            <label className="text-sm font-semibold text-neutral-300">The story</label>
+            <label className="text-sm font-semibold text-stone-300">The story</label>
             <textarea
               value={story}
               onChange={(e) => setStory(e.target.value)}
               placeholder="Share the memory, the message, or the vibe you want. The more detail, the better the song."
-              className="w-full h-36 px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors resize-none leading-relaxed"
+              className="w-full h-36 px-4 py-3 rounded-lg surface text-white placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors resize-none leading-relaxed"
             />
           </div>
 
@@ -141,13 +141,13 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
 
           <button
             type="submit"
-            className="w-full py-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+            className="w-full py-4 bg-accent hover:bg-accent/90 text-stone-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
           >
             Continue to checkout · ${price}
             <ArrowRight className="w-5 h-5" />
           </button>
 
-          <p className="text-center text-xs text-neutral-600">
+          <p className="text-center text-xs text-stone-600">
             You won't be charged yet · {isPremium ? 'Full commercial rights & distribution' : 'Personal-use license'}
           </p>
         </form>

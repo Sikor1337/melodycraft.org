@@ -52,7 +52,7 @@ function App() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen flex flex-col font-sans relative bg-neutral-950 text-white selection:bg-amber-400 selection:text-neutral-950 overflow-x-hidden"
+      className="min-h-screen flex flex-col font-sans relative bg-stone-950 text-white selection:bg-accent selection:text-stone-950 overflow-x-hidden"
     >
       <Navbar onLoginClick={() => setIsLoginOpen(true)} isLoggedIn={isLoggedIn} />
 

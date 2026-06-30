@@ -37,51 +37,51 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
         initial={{ scale: 0.96, opacity: 0, y: 16 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.96, opacity: 0, y: 16 }}
-        className="surface bg-neutral-950 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden flex flex-col"
+        className="surface bg-stone-950 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden flex flex-col"
       >
         <div className="px-7 py-6 border-b border-white/8 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white tracking-tight">Welcome back</h2>
           <button onClick={onClose} aria-label="Close" className="p-2 -mr-2 hover:bg-white/5 rounded-lg transition-colors">
-            <X className="w-5 h-5 text-neutral-500" />
+            <X className="w-5 h-5 text-stone-500" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-7 space-y-5">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-neutral-300">Email</label>
+            <label className="text-sm font-semibold text-stone-300">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-neutral-300">Password</label>
+            <label className="text-sm font-semibold text-stone-300">Password</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-neutral-600 outline-none focus:border-amber-400/40 transition-colors"
+              className="w-full px-4 py-3 rounded-lg surface text-white placeholder:text-stone-600 outline-none focus:border-accent/40 transition-colors"
             />
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+            className="w-full py-3.5 bg-accent hover:bg-accent/90 text-stone-950 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
           >
             {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
             {isLoading ? 'Signing in…' : 'Sign in'}
           </button>
 
-          <p className="text-center text-sm text-neutral-500">
-            New here? <button type="button" className="text-amber-400 font-medium hover:underline">Create an account</button>
+          <p className="text-center text-sm text-stone-500">
+            New here? <button type="button" className="text-accent font-medium hover:underline">Create an account</button>
           </p>
         </form>
       </motion.div>

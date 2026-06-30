@@ -9,15 +9,15 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div>
             <a href="#home" className="flex items-center gap-2 text-white font-bold text-lg tracking-tight mb-3">
-              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
               melodycraft
             </a>
-            <p className="text-neutral-500 max-w-sm leading-relaxed">
+            <p className="text-stone-500 max-w-sm leading-relaxed">
               Custom songs, written and produced just for you. Delivered in 24 hours.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-neutral-400">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-stone-400">
             <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/8 text-sm text-neutral-600">
+        <div className="mt-12 pt-8 border-t border-white/8 text-sm text-stone-600">
           © {year} MelodyCraft. All rights reserved.
         </div>
       </div>
