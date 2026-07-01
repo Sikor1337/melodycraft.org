@@ -41,7 +41,7 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
 - 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 3 linków** (po jednym na pakiet: Personal, Pro Release, Signature) z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
-- 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników.
+- 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników. **W MVP tego nie robimy** — konta wchodzą dopiero do pełnej wersji 1.0.
 - 📨 **Zamówienia** — po „zakupie" zamówienie **nie trafia jeszcze nigdzie** (brak bazy danych / maila). Do podłączenia.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
 
@@ -49,26 +49,28 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 
 ## 5. Plan rozwoju (roadmapa)
 
-> ⚡ **Najszybsza droga do pierwszej sprzedaży:** wkleić **3 linki Stripe** (formalnie Faza 2, ale to dosłownie wklejenie 3 linków — kilka minut) + wstawić **własne utwory i prawdziwe opinie** (Faza 1). Reszta faz to rozwój na później.
+> 🎯 **Zakres na teraz = MVP:** strona + **płatność za zamówienie piosenki** (Stripe). **Bez kont użytkownika** — te dodamy dopiero w pełnej wersji 1.0. Cel MVP: klient wchodzi, wypełnia brief, płaci; my dostajemy zamówienie na maila.
+>
+> ⚡ **Najszybsza droga do pierwszej sprzedaży:** wkleić **3 linki Stripe** + wstawić **własne utwory i prawdziwe opinie**.
 
-### Faza 1 — Treści (najbliższy krok) 🟡
+### Faza 1 (MVP) — Treści 🟡
 *Cel: strona pokazuje prawdziwą ofertę, gotowa do pokazania klientom.*
 - [ ] Podmienić próbki muzyki na **nasze utwory** (linki ze Spotify / Apple Music / YouTube).
 - [ ] Wstawić prawdziwe **opinie klientów** (i ewentualnie zdjęcia/imiona za zgodą).
 - [ ] Zweryfikować **ceny i opisy pakietów**.
 - [ ] Dopracować teksty (hasła, FAQ) pod naszą markę.
 
-### Faza 2 — Realne zamówienia i płatności 🟠
-*Cel: klient może realnie kupić i zapłacić.*
-- [ ] Podłączyć **bramkę płatności** (Stripe) — prawdziwe transakcje.
-- [ ] **Zapisywanie zamówień** (baza danych) + powiadomienie e-mail do nas i potwierdzenie do klienta.
-- [ ] Strona „dziękujemy" / status zamówienia.
+### Faza 2 (MVP) — Płatność za piosenkę 🟠
+*Cel: klient może realnie zapłacić za zamówienie — bez zakładania konta.*
+- [ ] Wkleić **3 linki Stripe** (Payment Links) — prawdziwe transakcje.
+- [ ] Zamówienie (brief klienta) trafia do nas **mailem** — na razie bez bazy danych.
+- [ ] Strona „dziękujemy" po płatności (`?paid=1`).
 
-### Faza 3 — Konta i obsługa klienta 🔵
-*Cel: klient ma swoje miejsce, my mamy panel.*
+### Faza 3 — Pełna wersja 1.0 (później) 🔵
+*Cel: konta i obsługa klienta — poza zakresem MVP.*
 - [ ] Prawdziwe **logowanie i konta** użytkowników.
 - [ ] **Panel klienta** — podgląd zamówień, pobieranie gotowych utworów, prośby o poprawki.
-- [ ] Prosty **panel dla nas** — zarządzanie zamówieniami.
+- [ ] Prosty **panel dla nas** — zarządzanie zamówieniami (zamiast maila).
 
 ### Faza 4 — Marketing i wzrost 🟢
 *Cel: więcej odwiedzin i wyższa konwersja.*

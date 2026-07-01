@@ -41,7 +41,7 @@ These look and click like the real thing, but are **not yet connected** to real 
 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
 - 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **3 Payment Links** (one per plan: Personal, Pro Release, Signature) pasted in from our Stripe account; until then an "Email my order" fallback is shown.
-- 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet.
+- 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet. **Out of scope for the MVP** — accounts arrive with the full 1.0 version.
 - 📨 **Orders** — after a "purchase," the order **doesn't go anywhere yet** (no database / email). To be connected.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.
 
@@ -49,26 +49,28 @@ These look and click like the real thing, but are **not yet connected** to real 
 
 ## 5. Development roadmap
 
-> ⚡ **Fastest path to the first sale:** paste in the **3 Stripe links** (technically Phase 2, but it's literally pasting 3 links — a few minutes) + add **our own tracks and real reviews** (Phase 1). Everything else is later-stage growth.
+> 🎯 **Current scope = MVP:** the site + **payment for a song order** (Stripe). **No user accounts** — those come later, in the full 1.0 version. MVP goal: a customer lands, fills in the brief, pays; we receive the order by email.
+>
+> ⚡ **Fastest path to the first sale:** paste in the **3 Stripe links** + add **our own tracks and real reviews**.
 
-### Phase 1 — Content (next step) 🟡
+### Phase 1 (MVP) — Content 🟡
 *Goal: the site shows the real offering, ready to present to customers.*
 - [ ] Replace music samples with **our own tracks** (links from Spotify / Apple Music / YouTube).
 - [ ] Add real **customer reviews** (and optionally photos/names with consent).
 - [ ] Verify **pricing and plan descriptions**.
 - [ ] Polish the copy (headlines, FAQ) to match our brand.
 
-### Phase 2 — Real orders & payments 🟠
-*Goal: a customer can actually buy and pay.*
-- [ ] Connect a **payment gateway** (Stripe) — real transactions.
-- [ ] **Save orders** (database) + email notification to us and a confirmation to the customer.
-- [ ] "Thank you" / order-status page.
+### Phase 2 (MVP) — Payment for a song 🟠
+*Goal: a customer can actually pay for an order — no account required.*
+- [ ] Paste in the **3 Stripe links** (Payment Links) — real transactions.
+- [ ] The order (customer brief) reaches us by **email** — no database for now.
+- [ ] A "thank you" page after payment (`?paid=1`).
 
-### Phase 3 — Accounts & customer support 🔵
-*Goal: customers get their own space, we get a panel.*
+### Phase 3 — Full 1.0 version (later) 🔵
+*Goal: accounts and customer support — out of MVP scope.*
 - [ ] Real **login and user accounts**.
 - [ ] **Customer dashboard** — view orders, download finished songs, request revisions.
-- [ ] A simple **admin panel** for us — manage orders.
+- [ ] A simple **admin panel** for us — manage orders (instead of email).
 
 ### Phase 4 — Marketing & growth 🟢
 *Goal: more traffic and higher conversion.*
