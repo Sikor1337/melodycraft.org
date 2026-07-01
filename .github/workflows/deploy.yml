@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
-# DISABLED auto-run: deployment is currently done from the `gh-pages` branch
-# (Pages Source = "Deploy from a branch"), built locally via deploy.bat. This
+# DISABLED auto-run: deployment is currently done from `main` → /docs
+# (Pages Source = "Deploy from a branch"), built locally via deploy.bat
+# (vite.config.ts sets outDir: 'docs' and docs/ is committed to main). This
 # workflow is kept for reference / manual runs only and no longer fires on push.
 on:
   workflow_dispatch:
