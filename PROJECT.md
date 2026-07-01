@@ -52,27 +52,32 @@ These look and click like the real thing, but are **not yet connected** to real 
 > 🎯 **Current scope = MVP:** the site + **payment for a song order** (Stripe). **No user accounts** — those come later, in the full 1.0 version. MVP goal: a customer lands, fills in the brief, pays; we receive the order by email.
 >
 > ⚡ **Fastest path to the first sale:** paste in the **3 Stripe links** + add **our own tracks and real reviews**.
+>
+> 📅 **Realistic timeline:**
+> - **Now (July 2026) — MVP:** Phase 2 (Stripe) **starts today**, Phase 1 (content) in parallel. Goal: **MVP live and first sales within ~1 week**. The priority is to **start earning**.
+> - **Later (once the MVP proves out and sales come in) — 1.0:** Phase 3 (accounts) roughly **September–October 2026**. We don't start it until the MVP is earning.
+> - **In parallel / after MVP:** Phase 4 (marketing) — kicks in once payments work.
 
-### Phase 1 (MVP) — Content 🟡
+### Phase 1 (MVP) — Content 🟡 · *now, July 2026*
 *Goal: the site shows the real offering, ready to present to customers.*
 - [ ] Replace music samples with **our own tracks** (links from Spotify / Apple Music / YouTube).
 - [ ] Add real **customer reviews** (and optionally photos/names with consent).
 - [ ] Verify **pricing and plan descriptions**.
 - [ ] Polish the copy (headlines, FAQ) to match our brand.
 
-### Phase 2 (MVP) — Payment for a song 🟠
+### Phase 2 (MVP) — Payment for a song 🟠 · *starting today — priority*
 *Goal: a customer can actually pay for an order — no account required.*
 - [ ] Paste in the **3 Stripe links** (Payment Links) — real transactions.
 - [ ] The order (customer brief) reaches us by **email** — no database for now.
 - [ ] A "thank you" page after payment (`?paid=1`).
 
-### Phase 3 — Full 1.0 version (later) 🔵
-*Goal: accounts and customer support — out of MVP scope.*
+### Phase 3 — Full 1.0 version: accounts 🔵 · *later — once the MVP is earning (~Sept–Oct 2026)*
+*Goal: accounts and customer support — out of MVP scope, only after sales are validated.*
 - [ ] Real **login and user accounts**.
 - [ ] **Customer dashboard** — view orders, download finished songs, request revisions.
 - [ ] A simple **admin panel** for us — manage orders (instead of email).
 
-### Phase 4 — Marketing & growth 🟢
+### Phase 4 — Marketing & growth 🟢 · *in parallel / after MVP launch*
 *Goal: more traffic and higher conversion.*
 - [ ] A custom **domain** (e.g., melodycraft.org instead of the github.io address).
 - [ ] **SEO** + a social-share image (link preview when shared).

@@ -52,27 +52,32 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 > 🎯 **Zakres na teraz = MVP:** strona + **płatność za zamówienie piosenki** (Stripe). **Bez kont użytkownika** — te dodamy dopiero w pełnej wersji 1.0. Cel MVP: klient wchodzi, wypełnia brief, płaci; my dostajemy zamówienie na maila.
 >
 > ⚡ **Najszybsza droga do pierwszej sprzedaży:** wkleić **3 linki Stripe** + wstawić **własne utwory i prawdziwe opinie**.
+>
+> 📅 **Realny harmonogram:**
+> - **Teraz (lipiec 2026) — MVP:** Faza 2 (Stripe) **zaczynamy dziś**, równolegle Faza 1 (treści). Cel: **MVP live i pierwsze sprzedaże w ciągu ~1 tygodnia**. Najważniejsze — **zacząć zarabiać**.
+> - **Później (gdy MVP się obroni, są sprzedaże) — 1.0:** Faza 3 (konta) orientacyjnie **wrzesień–październik 2026**. Nie ruszamy jej, dopóki MVP nie zarabia.
+> - **Równolegle / po MVP:** Faza 4 (marketing) — wchodzi, gdy płatności już działają.
 
-### Faza 1 (MVP) — Treści 🟡
+### Faza 1 (MVP) — Treści 🟡 · *teraz, lipiec 2026*
 *Cel: strona pokazuje prawdziwą ofertę, gotowa do pokazania klientom.*
 - [ ] Podmienić próbki muzyki na **nasze utwory** (linki ze Spotify / Apple Music / YouTube).
 - [ ] Wstawić prawdziwe **opinie klientów** (i ewentualnie zdjęcia/imiona za zgodą).
 - [ ] Zweryfikować **ceny i opisy pakietów**.
 - [ ] Dopracować teksty (hasła, FAQ) pod naszą markę.
 
-### Faza 2 (MVP) — Płatność za piosenkę 🟠
+### Faza 2 (MVP) — Płatność za piosenkę 🟠 · *dziś zaczynamy — priorytet*
 *Cel: klient może realnie zapłacić za zamówienie — bez zakładania konta.*
 - [ ] Wkleić **3 linki Stripe** (Payment Links) — prawdziwe transakcje.
 - [ ] Zamówienie (brief klienta) trafia do nas **mailem** — na razie bez bazy danych.
 - [ ] Strona „dziękujemy" po płatności (`?paid=1`).
 
-### Faza 3 — Pełna wersja 1.0 (później) 🔵
-*Cel: konta i obsługa klienta — poza zakresem MVP.*
+### Faza 3 — Pełna wersja 1.0: konta 🔵 · *później — gdy MVP zarabia (ok. wrzesień–październik 2026)*
+*Cel: konta i obsługa klienta — poza zakresem MVP, dopiero po walidacji sprzedaży.*
 - [ ] Prawdziwe **logowanie i konta** użytkowników.
 - [ ] **Panel klienta** — podgląd zamówień, pobieranie gotowych utworów, prośby o poprawki.
 - [ ] Prosty **panel dla nas** — zarządzanie zamówieniami (zamiast maila).
 
-### Faza 4 — Marketing i wzrost 🟢
+### Faza 4 — Marketing i wzrost 🟢 · *równolegle / po uruchomieniu MVP*
 *Cel: więcej odwiedzin i wyższa konwersja.*
 - [ ] Własna **domena** (np. melodycraft.org zamiast adresu github.io).
 - [ ] **SEO** + obrazek do social media (podgląd przy udostępnianiu linku).
