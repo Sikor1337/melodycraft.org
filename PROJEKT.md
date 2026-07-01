@@ -49,6 +49,8 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 
 ## 5. Plan rozwoju (roadmapa)
 
+> ⚡ **Najszybsza droga do pierwszej sprzedaży:** wkleić **3 linki Stripe** (formalnie Faza 2, ale to dosłownie wklejenie 3 linków — kilka minut) + wstawić **własne utwory i prawdziwe opinie** (Faza 1). Reszta faz to rozwój na później.
+
 ### Faza 1 — Treści (najbliższy krok) 🟡
 *Cel: strona pokazuje prawdziwą ofertę, gotowa do pokazania klientom.*
 - [ ] Podmienić próbki muzyki na **nasze utwory** (linki ze Spotify / Apple Music / YouTube).

@@ -49,6 +49,8 @@ These look and click like the real thing, but are **not yet connected** to real 
 
 ## 5. Development roadmap
 
+> ⚡ **Fastest path to the first sale:** paste in the **3 Stripe links** (technically Phase 2, but it's literally pasting 3 links — a few minutes) + add **our own tracks and real reviews** (Phase 1). Everything else is later-stage growth.
+
 ### Phase 1 — Content (next step) 🟡
 *Goal: the site shows the real offering, ready to present to customers.*
 - [ ] Replace music samples with **our own tracks** (links from Spotify / Apple Music / YouTube).

@@ -14,11 +14,12 @@ MelodyCraft is a single-page marketing/storefront site for a custom-song service
 npm install        # install dependencies
 npm run dev        # start the Vite dev server
 npm run build      # production build to dist/
-npm run lint       # tsc --noEmit (the only automated check)
+npm run lint       # tsc --noEmit (type-check)
 npm run preview    # serve the production build locally
+npm test           # run the Vitest suite once (npm run test:watch to watch)
 ```
 
-`npm run lint` (`tsc --noEmit`) is the sole automated verification — run it after edits. `tsconfig.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters`, so unused imports/vars fail the build. There is no test runner, ESLint, or formatter.
+`npm run lint` (`tsc --noEmit`) is the primary check — run it after edits. `tsconfig.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters`, so unused imports/vars fail the build. There is also a small **Vitest** suite (`npm test`) covering pricing, checkout, and types (`*.test.tsx` / `*.test.ts`; setup in `src/test/setup.ts`). There is no ESLint or formatter.
 
 **Windows helpers:** `start-dev.bat` (installs deps if needed, runs the server on `http://127.0.0.1:3000/melodycraft.org/`, opens the browser) and `stop-dev.bat`. Note the dev URL includes the `/melodycraft.org/` base path.
 
@@ -28,7 +29,7 @@ npm run preview    # serve the production build locally
 - `src/index.css` — Tailwind v4 entry (`@import "tailwindcss"`). `@theme` defines `--font-sans` (Plus Jakarta Sans), `--font-display` (Fraunces serif — used via the `font-display` class on headings), and `--color-accent` (the gold token → drives `bg-accent`/`text-accent`/etc.). Utility classes: `.surface` (subtle card bg + hairline border) and `.hairline` (thin top border between sections), plus `animate-fade-in` / `animate-shake` and a `prefers-reduced-motion` block.
 - `src/components/SpotifyEmbed.tsx` — wraps a Spotify iframe player. `src` URLs in `Hero`/`AudioSamples` are **placeholders**; swap for the studio's own playlist/track embed links. Use playlist/album embeds (render dark); a single-track embed shows a light "preview" bar for logged-out visitors. `Navbar` has a mobile hamburger menu (`md:hidden`).
 - `src/App.tsx` — the whole page. Holds top-level UI state as `useState` flags and composes the sections in conversion order (`Hero` → `TrustedBy` → `HowItWorks` → `AudioSamples` → `Testimonials` → `Pricing` → `FAQ` → `Footer`), toggling three modals via `framer-motion`'s `AnimatePresence`: `SongBuilderModal` (order form), `LoginModal`, `CheckoutModal`.
-- `src/types.ts` — shared types: `Tier` (`'standard' | 'premium'`), `SongOrder` (the order-form brief), `OrderItem` (what checkout receives), and `TIER_PRICE` (`standard` = $49, `premium` = $99).
+- `src/types.ts` — shared types: `Tier` (`'standard' | 'premium' | 'signature'`), `SongOrder` (the order-form brief), `OrderItem` (what checkout receives), and `TIER_PRICE` (`standard` = $49, `premium` = $99, `signature` = $199), plus `TIER_LABEL` / `TIER_NOTE`.
 - `src/components/` — all UI components (single source of truth; one component per PascalCase file, `export const`, typed `React.FC`).
 
 Flow: `SongBuilderModal` collects a brief (genre, occasion, who it's for, story) — **no AI** — and calls `onOrder(SongOrder)`, which `App` turns into an `OrderItem` and hands to `CheckoutModal`. There is no router; navigation is hash-based smooth-scroll to section ids (`#home`, `#how-it-works`, `#samples`, `#pricing`, `#faq`, `#contact`).

@@ -28,7 +28,8 @@ No API keys or environment variables are required.
 | --- | --- |
 | `npm run dev` | Start the Vite dev server |
 | `npm run build` | Production build to `dist/` |
-| `npm run lint` | Type-check with `tsc --noEmit` (the only automated check) |
+| `npm run lint` | Type-check with `tsc --noEmit` |
+| `npm test` | Run the Vitest suite once (`npm run test:watch` to watch) |
 | `npm run preview` | Serve the production build locally |
 
 ## Project Structure
