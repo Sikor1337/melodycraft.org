@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-MelodyCraft is a single-page marketing/storefront site for a custom-song service aimed at a US audience: customers submit a brief and professional producers deliver a studio-quality track in 24 hours. It is a Vite + React 18 + TypeScript app styled with Tailwind CSS v4. There is **no backend and no AI integration** — login, the order form, and checkout are front-end demo flows.
+MelodyCraft is a single-page marketing/storefront site for a custom-song service aimed at a US audience: customers submit a brief and professional producers deliver a studio-quality track in 24 hours. It is a Vite + React 18 + TypeScript app styled with Tailwind CSS v4. There is **no backend and no AI integration** — the order form and checkout are front-end demo flows. (Accounts/login are deferred to a future 1.0 version; the MVP has no login.)
 
 > History note: this started as a Google AI Studio export with two Gemini-powered features (an AI song-concept generator and an AI image "Art Studio") and an "AI-looking" neon/cyberpunk theme. Both AI features and the neon styling were removed; the app no longer needs any API key.
 
@@ -28,7 +28,7 @@ npm test           # run the Vitest suite once (npm run test:watch to watch)
 - `src/index.tsx` — entry point; mounts `<App/>` in a class-based `ErrorBoundary` and `React.StrictMode`.
 - `src/index.css` — Tailwind v4 entry (`@import "tailwindcss"`). `@theme` defines `--font-sans` (Plus Jakarta Sans), `--font-display` (Fraunces serif — used via the `font-display` class on headings), and `--color-accent` (the gold token → drives `bg-accent`/`text-accent`/etc.). Utility classes: `.surface` (subtle card bg + hairline border) and `.hairline` (thin top border between sections), plus `animate-fade-in` / `animate-shake` and a `prefers-reduced-motion` block.
 - `src/components/SpotifyEmbed.tsx` — wraps a Spotify iframe player. `src` URLs in `Hero`/`AudioSamples` are **placeholders**; swap for the studio's own playlist/track embed links. Use playlist/album embeds (render dark); a single-track embed shows a light "preview" bar for logged-out visitors. `Navbar` has a mobile hamburger menu (`md:hidden`).
-- `src/App.tsx` — the whole page. Holds top-level UI state as `useState` flags and composes the sections in conversion order (`Hero` → `TrustedBy` → `HowItWorks` → `AudioSamples` → `Testimonials` → `Pricing` → `FAQ` → `Footer`), toggling three modals via `framer-motion`'s `AnimatePresence`: `SongBuilderModal` (order form), `LoginModal`, `CheckoutModal`.
+- `src/App.tsx` — the whole page. Holds top-level UI state as `useState` flags and composes the sections in conversion order (`Hero` → `TrustedBy` → `HowItWorks` → `AudioSamples` → `Testimonials` → `Pricing` → `FAQ` → `Footer`), toggling two modals via `framer-motion`'s `AnimatePresence`: `SongBuilderModal` (order form) and `CheckoutModal`. (`LoginModal` exists but is **not wired up** — accounts are deferred to the full 1.0 version, so the MVP has no login button.)
 - `src/types.ts` — shared types: `Tier` (`'standard' | 'premium' | 'signature'`), `SongOrder` (the order-form brief), `OrderItem` (what checkout receives), and `TIER_PRICE` (`standard` = $49, `premium` = $99, `signature` = $199), plus `TIER_LABEL` / `TIER_NOTE`.
 - `src/components/` — all UI components (single source of truth; one component per PascalCase file, `export const`, typed `React.FC`).
 

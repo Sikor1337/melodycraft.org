@@ -2,7 +2,7 @@
 
 Custom songs, written and produced just for you — studio quality, delivered in 24 hours.
 
-A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS v4). Visitors browse the offering, submit a song brief through the order form, and check out. There is no backend and no AI integration — login, the order form, and checkout are front-end demo flows.
+A single-page React + TypeScript marketing/storefront site (Vite + Tailwind CSS v4). Visitors browse the offering, submit a song brief through the order form, and check out. There is no backend and no AI integration — the order form and checkout are front-end demo flows. (Accounts/login are deferred to a future 1.0 version; the MVP has no login.)
 
 ## Run Locally
 

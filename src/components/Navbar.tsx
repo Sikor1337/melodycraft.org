@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  onLoginClick: () => void;
-  isLoggedIn: boolean;
-}
-
 const LINKS = [
   { href: '#how-it-works', label: 'How it works' },
   { href: '#samples', label: 'Samples' },
@@ -13,7 +8,7 @@ const LINKS = [
   { href: '#faq', label: 'FAQ' },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ onLoginClick, isLoggedIn }) => {
+export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -45,22 +40,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick, isLoggedIn }) => {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onLoginClick}
-            className="px-4 py-2 rounded-lg border border-white/15 text-white text-sm font-medium hover:bg-white/5 transition-colors"
-          >
-            {isLoggedIn ? 'Account' : 'Log in'}
-          </button>
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            className="md:hidden p-2 -mr-2 text-white"
-          >
-            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          className="md:hidden p-2 -mr-2 text-white"
+        >
+          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
 
       {/* Mobile menu */}
