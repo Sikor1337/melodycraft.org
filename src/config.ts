@@ -15,9 +15,9 @@ import { Tier } from './types';
  * fallback instead of a broken button. Test-mode links work the same way.
  */
 export const STRIPE_PAYMENT_LINKS: Record<Tier, string> = {
-  standard: '', // Just the Song — $9.99
-  premium: '', // Streaming for a Year — $39.99
-  signature: '', // Streaming for Life — $69.99
+  standard: 'https://buy.stripe.com/test_6oU3cvbCq9hQ0Sx9tU7wA00', // Just the Song — $9.99
+  premium: 'https://buy.stripe.com/test_14AfZh7ma8dMbxb21s7wA01', // Streaming for a Year — $39.99
+  signature: 'https://buy.stripe.com/test_6oU8wP9ui8dMcBf21s7wA02', // Streaming for Life — $69.99
 };
 
 /** Email used as a fallback when a Payment Link isn't configured yet. */
