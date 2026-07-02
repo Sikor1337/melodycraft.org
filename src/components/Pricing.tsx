@@ -1,6 +1,6 @@
 import React from 'react';
 import { Check } from 'lucide-react';
-import { Tier } from '../types';
+import { Tier, TIER_PRICE, TIER_LABEL } from '../types';
 
 interface PricingProps {
   onSelectPlan: (tier: Tier) => void;
@@ -9,8 +9,8 @@ interface PricingProps {
 const PLANS = [
   {
     tier: 'standard' as Tier,
-    name: 'Just the Song',
-    price: 9.99,
+    name: TIER_LABEL.standard,
+    price: TIER_PRICE.standard,
     note: 'one-time',
     features: [
       'Custom studio-quality song',
@@ -23,8 +23,8 @@ const PLANS = [
   },
   {
     tier: 'premium' as Tier,
-    name: 'Streaming for a Year',
-    price: 39.99,
+    name: TIER_LABEL.premium,
+    price: TIER_PRICE.premium,
     note: 'one-time',
     features: [
       'Everything in Just the Song',
@@ -36,8 +36,8 @@ const PLANS = [
   },
   {
     tier: 'signature' as Tier,
-    name: 'Streaming for Life',
-    price: 69.99,
+    name: TIER_LABEL.signature,
+    price: TIER_PRICE.signature,
     note: 'one-time',
     features: [
       'Everything in the yearly plan',

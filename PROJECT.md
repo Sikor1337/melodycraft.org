@@ -29,7 +29,7 @@
 | "How it works" | ✅ Done | 3 steps: share your story → we produce it → you receive it |
 | Music samples | ✅ Done | Spotify players embedded on the page (*currently placeholders*) |
 | Customer reviews | ✅ Done | 3 testimonials (*currently placeholders*) |
-| Pricing | ✅ Done | Three plans (*good-better-best* strategy): **Personal $49**, **Pro Release $99** (most popular) and **Signature $199** (anchor — makes $99 look like great value) |
+| Pricing | ✅ Done | Three plans (*good-better-best* strategy): **Just the Song $9.99**, **Streaming for a Year $39.99** (most popular) and **Streaming for Life $69.99** (anchor — makes $39.99 look like great value) |
 | Order form | ✅ Done | Style, occasion, who it's for, story → proceed to checkout |
 | FAQ | ✅ Done | 5 questions and answers |
 | Mobile version | ✅ Done | Fully responsive + a "hamburger" menu |
@@ -40,7 +40,7 @@
 These look and click like the real thing, but are **not yet connected** to real systems:
 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
-- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **3 Payment Links** (one per plan: Personal, Pro Release, Signature) pasted in from our Stripe account; until then an "Email my order" fallback is shown.
+- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **3 Payment Links** (one per plan: Just the Song, Streaming for a Year, Streaming for Life) pasted in from our Stripe account; until then an "Email my order" fallback is shown.
 - 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet. **Out of scope for the MVP** — accounts arrive with the full 1.0 version.
 - 📨 **Orders** — after a "purchase," the order **doesn't go anywhere yet** (no database / email). To be connected.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.

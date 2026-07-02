@@ -29,7 +29,7 @@
 | „Jak to działa" | ✅ Gotowe | 3 kroki: opowiedz historię → produkujemy → odbierasz |
 | Próbki muzyki | ✅ Gotowe | Odtwarzacze Spotify osadzone na stronie (*na razie przykładowe*) |
 | Opinie klientów | ✅ Gotowe | 3 referencje (*na razie przykładowe*) |
-| Cennik | ✅ Gotowe | Trzy pakiety (strategia *good-better-best*): **Personal $49**, **Pro Release $99** (najpopularniejszy) i **Signature $199** (kotwica — sprawia, że $99 wygląda na świetną ofertę) |
+| Cennik | ✅ Gotowe | Trzy pakiety (strategia *good-better-best*): **Just the Song $9.99**, **Streaming for a Year $39.99** (najpopularniejszy) i **Streaming for Life $69.99** (kotwica — sprawia, że $39.99 wygląda na świetną ofertę) |
 | Formularz zamówienia | ✅ Gotowe | Styl, okazja, dla kogo, historia → przejście do płatności |
 | Najczęstsze pytania (FAQ) | ✅ Gotowe | 5 pytań i odpowiedzi |
 | Wersja mobilna | ✅ Gotowe | Pełne dopasowanie do telefonu + menu „hamburger" |
@@ -40,7 +40,7 @@
 To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do realnych systemów:
 
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
-- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 3 linków** (po jednym na pakiet: Personal, Pro Release, Signature) z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
+- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 3 linków** (po jednym na pakiet: Just the Song, Streaming for a Year, Streaming for Life) z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
 - 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników. **W MVP tego nie robimy** — konta wchodzą dopiero do pełnej wersji 1.0.
 - 📨 **Zamówienia** — po „zakupie" zamówienie **nie trafia jeszcze nigdzie** (brak bazy danych / maila). Do podłączenia.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
