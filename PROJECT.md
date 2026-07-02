@@ -40,9 +40,9 @@
 These look and click like the real thing, but are **not yet connected** to real systems:
 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
-- 💳 **Payment (Stripe)** — checkout **redirects to Stripe's secure payment page** (Payment Links). It only needs **3 Payment Links** (one per plan: Just the Song, Streaming for a Year, Streaming for Life) pasted in from our Stripe account; until then an "Email my order" fallback is shown.
+- 💳 **Payment (Stripe)** — checkout **already redirects to Stripe's secure payment page** (Payment Links) — currently in **test mode** (Stripe's sandbox: the full real flow, but no real money moves). Our Stripe account exists and is being configured; once it's activated we swap in the **3 live links** (one per plan) and real payments are on. If a link were ever missing, an "Email my order" fallback is shown instead.
 - 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet. **Out of scope for the MVP** — accounts arrive with the full 1.0 version.
-- 📨 **Orders** — after a "purchase," the order **doesn't go anywhere yet** (no database / email). To be connected.
+- 📨 **Orders** — each order now gets a **reference code** (e.g. `MC-ABC123`) that appears next to the payment in our Stripe dashboard, and the brief is saved in the customer's browser. But the brief itself **doesn't reach us automatically yet** (no database / email). To be connected.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.
 
 ---
@@ -51,10 +51,10 @@ These look and click like the real thing, but are **not yet connected** to real 
 
 > 🎯 **Current scope = MVP:** the site + **payment for a song order** (Stripe). **No user accounts** — those come later, in the full 1.0 version. MVP goal: a customer lands, fills in the brief, pays; we receive the order by email.
 >
-> ⚡ **Fastest path to the first sale:** paste in the **3 Stripe links** + add **our own tracks and real reviews**.
+> ⚡ **Fastest path to the first sale:** finish **Stripe account activation** (then swap the test links for live ones) + add **our own tracks and real reviews**.
 >
 > 📅 **Realistic timeline:**
-> - **Now (July 2026) — MVP:** Phase 2 (Stripe) **starts today**, Phase 1 (content) in parallel. Goal: **MVP live and first sales within ~1 week**. The priority is to **start earning**.
+> - **Now (July 2026) — MVP:** Phase 2 (Stripe) is **in progress** — test payments already work end-to-end; we're waiting on live account activation. Phase 1 (content) runs in parallel. Goal: **MVP live and first sales within ~1 week**. The priority is to **start earning**.
 > - **Later (once the MVP proves out and sales come in) — 1.0:** Phase 3 (accounts) roughly **September–October 2026**. We don't start it until the MVP is earning.
 > - **In parallel / after MVP:** Phase 4 (marketing) — kicks in once payments work.
 
@@ -65,11 +65,12 @@ These look and click like the real thing, but are **not yet connected** to real 
 - [ ] Verify **pricing and plan descriptions**.
 - [ ] Polish the copy (headlines, FAQ) to match our brand.
 
-### Phase 2 (MVP) — Payment for a song 🟠 · *starting today — priority*
+### Phase 2 (MVP) — Payment for a song 🟠 · *in progress — priority*
 *Goal: a customer can actually pay for an order — no account required.*
-- [ ] Paste in the **3 Stripe links** (Payment Links) — real transactions.
-- [ ] The order (customer brief) reaches us by **email** — no database for now.
-- [ ] A "thank you" page after payment (`?paid=1`).
+- [x] Wire up the **3 Stripe links** (Payment Links) — ✅ done in **test mode** (July 3, 2026); the whole flow works, no real money yet.
+- [ ] Swap in the **live** Payment Links once the Stripe account is activated (account created, configuration in progress) — real transactions.
+- [ ] The order (customer brief) reaches us by **email** — no database for now. *(Today: the brief stays in the customer's browser; only the reference code reaches Stripe.)*
+- [x] A "thank you" message after payment (`?paid=1`) — ✅ done (confirmation banner).
 
 ### Phase 3 — Full 1.0 version: accounts 🔵 · *later — once the MVP is earning (~Sept–Oct 2026)*
 *Goal: accounts and customer support — out of MVP scope, only after sales are validated.*
@@ -106,7 +107,7 @@ To kick off **Phase 1**, it would help to have:
 - **What it's built with:** a modern web toolkit (React + Vite + Tailwind). It's an industry standard — easy to develop and maintain.
 - **Where it's hosted:** GitHub Pages — **free** hosting. Once payments/database are connected, there will be small service costs (e.g., Stripe takes a fee per transaction).
 - **Updates:** changes are published by running `deploy.bat`, which builds the site and pushes it to GitHub Pages (the `docs/` folder on the `main` branch).
-- **Security:** the site currently stores no customer data or payments (because it's still a demo version).
+- **Security:** the site itself stores no customer data; payment happens entirely on Stripe's secure pages (currently in test mode — no real money until the live links go in).
 
 ---
 

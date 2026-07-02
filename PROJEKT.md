@@ -40,9 +40,9 @@
 To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do realnych systemów:
 
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
-- 💳 **Płatność (Stripe)** — checkout **przekierowuje do bezpiecznej płatności Stripe** (Payment Links). Czeka tylko na **wklejenie 3 linków** (po jednym na pakiet: Just the Song, Streaming for a Year, Streaming for Life) z naszego konta Stripe; do tego czasu działa awaryjny przycisk „Email my order".
+- 💳 **Płatność (Stripe)** — checkout **już przekierowuje do bezpiecznej płatności Stripe** (Payment Links) — na razie w **trybie testowym** (sandbox Stripe: pełny prawdziwy przepływ, ale bez prawdziwych pieniędzy). Konto Stripe istnieje i jest w trakcie konfiguracji; po aktywacji podmieniamy **3 linki na produkcyjne** (po jednym na pakiet) i ruszają prawdziwe płatności. Gdyby linku kiedyś zabrakło, pokazuje się awaryjny przycisk „Email my order".
 - 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników. **W MVP tego nie robimy** — konta wchodzą dopiero do pełnej wersji 1.0.
-- 📨 **Zamówienia** — po „zakupie" zamówienie **nie trafia jeszcze nigdzie** (brak bazy danych / maila). Do podłączenia.
+- 📨 **Zamówienia** — każde zamówienie dostaje już **kod referencyjny** (np. `MC-ABC123`), widoczny przy płatności w naszym panelu Stripe, a brief zapisuje się w przeglądarce klienta. Ale sam brief **nie trafia jeszcze do nas automatycznie** (brak bazy danych / maila). Do podłączenia.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
 
 ---
@@ -51,10 +51,10 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 
 > 🎯 **Zakres na teraz = MVP:** strona + **płatność za zamówienie piosenki** (Stripe). **Bez kont użytkownika** — te dodamy dopiero w pełnej wersji 1.0. Cel MVP: klient wchodzi, wypełnia brief, płaci; my dostajemy zamówienie na maila.
 >
-> ⚡ **Najszybsza droga do pierwszej sprzedaży:** wkleić **3 linki Stripe** + wstawić **własne utwory i prawdziwe opinie**.
+> ⚡ **Najszybsza droga do pierwszej sprzedaży:** dokończyć **aktywację konta Stripe** (potem podmienić linki testowe na produkcyjne) + wstawić **własne utwory i prawdziwe opinie**.
 >
 > 📅 **Realny harmonogram:**
-> - **Teraz (lipiec 2026) — MVP:** Faza 2 (Stripe) **zaczynamy dziś**, równolegle Faza 1 (treści). Cel: **MVP live i pierwsze sprzedaże w ciągu ~1 tygodnia**. Najważniejsze — **zacząć zarabiać**.
+> - **Teraz (lipiec 2026) — MVP:** Faza 2 (Stripe) **w toku** — płatności testowe działają już od początku do końca; czekamy na aktywację konta produkcyjnego. Równolegle Faza 1 (treści). Cel: **MVP live i pierwsze sprzedaże w ciągu ~1 tygodnia**. Najważniejsze — **zacząć zarabiać**.
 > - **Później (gdy MVP się obroni, są sprzedaże) — 1.0:** Faza 3 (konta) orientacyjnie **wrzesień–październik 2026**. Nie ruszamy jej, dopóki MVP nie zarabia.
 > - **Równolegle / po MVP:** Faza 4 (marketing) — wchodzi, gdy płatności już działają.
 
@@ -65,11 +65,12 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 - [ ] Zweryfikować **ceny i opisy pakietów**.
 - [ ] Dopracować teksty (hasła, FAQ) pod naszą markę.
 
-### Faza 2 (MVP) — Płatność za piosenkę 🟠 · *dziś zaczynamy — priorytet*
+### Faza 2 (MVP) — Płatność za piosenkę 🟠 · *w toku — priorytet*
 *Cel: klient może realnie zapłacić za zamówienie — bez zakładania konta.*
-- [ ] Wkleić **3 linki Stripe** (Payment Links) — prawdziwe transakcje.
-- [ ] Zamówienie (brief klienta) trafia do nas **mailem** — na razie bez bazy danych.
-- [ ] Strona „dziękujemy" po płatności (`?paid=1`).
+- [x] Podpiąć **3 linki Stripe** (Payment Links) — ✅ zrobione w **trybie testowym** (3 lipca 2026); cały przepływ działa, jeszcze bez prawdziwych pieniędzy.
+- [ ] Podmienić linki na **produkcyjne** po aktywacji konta Stripe (konto założone, konfiguracja w toku) — prawdziwe transakcje.
+- [ ] Zamówienie (brief klienta) trafia do nas **mailem** — na razie bez bazy danych. *(Dziś: brief zostaje w przeglądarce klienta; do Stripe trafia tylko kod referencyjny.)*
+- [x] Komunikat „dziękujemy" po płatności (`?paid=1`) — ✅ zrobione (baner potwierdzenia).
 
 ### Faza 3 — Pełna wersja 1.0: konta 🔵 · *później — gdy MVP zarabia (ok. wrzesień–październik 2026)*
 *Cel: konta i obsługa klienta — poza zakresem MVP, dopiero po walidacji sprzedaży.*
@@ -106,7 +107,7 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 - **Z czego zrobiona:** nowoczesny zestaw narzędzi do stron internetowych (React + Vite + Tailwind). To standard branżowy — łatwo rozwijać i utrzymywać.
 - **Gdzie stoi:** GitHub Pages — hosting **darmowy**. Po podłączeniu płatności/bazy danych dojdą niewielkie koszty usług (np. Stripe pobiera prowizję od transakcji).
 - **Aktualizacje:** zmiany publikujemy poleceniem `deploy.bat`, które buduje stronę i wysyła ją na GitHub Pages (folder `docs/` na gałęzi `main`).
-- **Bezpieczeństwo:** strona nie przechowuje na razie żadnych danych klientów ani płatności (bo to jeszcze wersja pokazowa).
+- **Bezpieczeństwo:** sama strona nie przechowuje żadnych danych klientów; płatność odbywa się w całości na bezpiecznych stronach Stripe (na razie w trybie testowym — prawdziwe pieniądze dopiero po podmianie linków na produkcyjne).
 
 ---
 
