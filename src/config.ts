@@ -22,3 +22,18 @@ export const STRIPE_PAYMENT_LINKS: Record<Tier, string> = {
 
 /** Email used as a fallback when a Payment Link isn't configured yet. */
 export const CONTACT_EMAIL = 'hello@melodycraft.org';
+
+/**
+ * Web3Forms access key — emails the order brief to us when the customer
+ * clicks "Pay with Stripe" (the brief itself never reaches Stripe).
+ *
+ * How to get one (free, ~2 minutes):
+ *   1. Go to https://web3forms.com and enter the inbox that should receive
+ *      order briefs (e.g. hello@melodycraft.org).
+ *   2. The access key arrives by email — paste it below.
+ *
+ * The key is public by design (it only lets people send email TO us).
+ * Leave as '' to disable — checkout works the same, the brief just stays
+ * in the customer's browser.
+ */
+export const WEB3FORMS_ACCESS_KEY = '';

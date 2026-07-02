@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { X, Lock, Loader2, Mail } from 'lucide-react';
 import { OrderItem, TIER_LABEL } from '../types';
 import { STRIPE_PAYMENT_LINKS, CONTACT_EMAIL } from '../config';
+import { sendBriefEmail } from '../sendBrief';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -35,6 +36,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
     } catch {
       /* ignore storage failures */
     }
+    sendBriefEmail(item.order, item.tier, item.price, ref);
     const sep = paymentLink.includes('?') ? '&' : '?';
     window.location.href = `${paymentLink}${sep}client_reference_id=${ref}`;
   };

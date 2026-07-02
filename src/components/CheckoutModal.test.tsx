@@ -7,6 +7,7 @@ import type { OrderItem } from '../types';
 vi.mock('../config', () => ({
   STRIPE_PAYMENT_LINKS: { standard: 'https://buy.stripe.com/test_abc123', premium: '', signature: '' },
   CONTACT_EMAIL: 'hello@melodycraft.org',
+  WEB3FORMS_ACCESS_KEY: '',
 }));
 
 afterEach(cleanup);

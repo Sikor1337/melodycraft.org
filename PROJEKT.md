@@ -42,7 +42,7 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 - 🎵 **Próbki muzyki** — teraz to popularne playlisty Spotify jako zaślepki. Trzeba wstawić **nasze własne utwory**.
 - 💳 **Płatność (Stripe)** — checkout **już przekierowuje do bezpiecznej płatności Stripe** (Payment Links) — na razie w **trybie testowym** (sandbox Stripe: pełny prawdziwy przepływ, ale bez prawdziwych pieniędzy). Konto Stripe istnieje i jest w trakcie konfiguracji; po aktywacji podmieniamy **3 linki na produkcyjne** (po jednym na pakiet) i ruszają prawdziwe płatności. Gdyby linku kiedyś zabrakło, pokazuje się awaryjny przycisk „Email my order".
 - 🔐 **Logowanie / konto** — przyciski działają wizualnie, ale **nie ma prawdziwych kont** użytkowników. **W MVP tego nie robimy** — konta wchodzą dopiero do pełnej wersji 1.0.
-- 📨 **Zamówienia** — każde zamówienie dostaje już **kod referencyjny** (np. `MC-ABC123`), widoczny przy płatności w naszym panelu Stripe, a brief zapisuje się w przeglądarce klienta. Ale sam brief **nie trafia jeszcze do nas automatycznie** (brak bazy danych / maila). Do podłączenia.
+- 📨 **Zamówienia** — każde zamówienie dostaje **kod referencyjny** (np. `MC-ABC123`), widoczny przy płatności w naszym panelu Stripe, a strona jest gotowa **wysłać nam cały brief mailem** w momencie płatności. Brakuje tylko darmowego klucza (z web3forms.com) wklejonego do konfiguracji — do tego czasu brief zostaje w przeglądarce klienta.
 - 💬 **Opinie i statystyki** (np. „10 000+ klientów") — teksty przykładowe, do zastąpienia prawdziwymi.
 
 ---
@@ -69,7 +69,7 @@ To wygląda i klika się jak prawdziwe, ale **jeszcze nie jest podłączone** do
 *Cel: klient może realnie zapłacić za zamówienie — bez zakładania konta.*
 - [x] Podpiąć **3 linki Stripe** (Payment Links) — ✅ zrobione w **trybie testowym** (3 lipca 2026); cały przepływ działa, jeszcze bez prawdziwych pieniędzy.
 - [ ] Podmienić linki na **produkcyjne** po aktywacji konta Stripe (konto założone, konfiguracja w toku) — prawdziwe transakcje.
-- [ ] Zamówienie (brief klienta) trafia do nas **mailem** — na razie bez bazy danych. *(Dziś: brief zostaje w przeglądarce klienta; do Stripe trafia tylko kod referencyjny.)*
+- [x] Zamówienie (brief klienta) trafia do nas **mailem** — ✅ kod gotowy (3 lipca 2026); do włączenia wystarczy wkleić darmowy klucz z web3forms.com do konfiguracji. Na razie bez bazy danych.
 - [x] Komunikat „dziękujemy" po płatności (`?paid=1`) — ✅ zrobione (baner potwierdzenia).
 
 ### Faza 3 — Pełna wersja 1.0: konta 🔵 · *później — gdy MVP zarabia (ok. wrzesień–październik 2026)*

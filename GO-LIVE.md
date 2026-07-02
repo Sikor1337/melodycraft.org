@@ -37,7 +37,12 @@ deploy.bat
   (Optional real test: pay $9.99 yourself, confirm the `?paid=1` banner, then refund
   from the dashboard — or ask Claude, the plugin can create refunds.)
 
+## 6. Turn on order-brief e-mail (code is ready, needs one key)
+- Go to https://web3forms.com, enter the inbox that should receive briefs
+  (e.g. hello@melodycraft.org) — the free access key arrives by e-mail.
+- Paste it into `src/config.ts` → `WEB3FORMS_ACCESS_KEY` and deploy.
+- From then on every "Pay with Stripe" click e-mails us the full brief with the
+  `MC-...` reference code (the same code shows next to the payment in Stripe).
+
 ## Still open after go-live (not blocking)
-- Order brief e-mail delivery (today: brief stays in customer's browser, only the
-  `MC-...` reference code reaches Stripe) — needs Formspree/EmailJS or similar.
 - Own tracks + real testimonials (Phase 1 content).

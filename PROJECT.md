@@ -42,7 +42,7 @@ These look and click like the real thing, but are **not yet connected** to real 
 - 🎵 **Music samples** — currently popular Spotify playlists used as placeholders. We need to add **our own tracks**.
 - 💳 **Payment (Stripe)** — checkout **already redirects to Stripe's secure payment page** (Payment Links) — currently in **test mode** (Stripe's sandbox: the full real flow, but no real money moves). Our Stripe account exists and is being configured; once it's activated we swap in the **3 live links** (one per plan) and real payments are on. If a link were ever missing, an "Email my order" fallback is shown instead.
 - 🔐 **Login / account** — the buttons work visually, but there are **no real user accounts** yet. **Out of scope for the MVP** — accounts arrive with the full 1.0 version.
-- 📨 **Orders** — each order now gets a **reference code** (e.g. `MC-ABC123`) that appears next to the payment in our Stripe dashboard, and the brief is saved in the customer's browser. But the brief itself **doesn't reach us automatically yet** (no database / email). To be connected.
+- 📨 **Orders** — each order gets a **reference code** (e.g. `MC-ABC123`) that appears next to the payment in our Stripe dashboard, and the site is ready to **e-mail us the full brief** at the moment of payment. It just needs a free key (from web3forms.com) pasted into the config — until then the brief stays in the customer's browser.
 - 💬 **Reviews and stats** (e.g., "10,000+ customers") — placeholder text, to be replaced with real data.
 
 ---
@@ -69,7 +69,7 @@ These look and click like the real thing, but are **not yet connected** to real 
 *Goal: a customer can actually pay for an order — no account required.*
 - [x] Wire up the **3 Stripe links** (Payment Links) — ✅ done in **test mode** (July 3, 2026); the whole flow works, no real money yet.
 - [ ] Swap in the **live** Payment Links once the Stripe account is activated (account created, configuration in progress) — real transactions.
-- [ ] The order (customer brief) reaches us by **email** — no database for now. *(Today: the brief stays in the customer's browser; only the reference code reaches Stripe.)*
+- [x] The order (customer brief) reaches us by **email** — ✅ code done (July 3, 2026); needs a free web3forms.com key pasted into the config to switch on. No database for now.
 - [x] A "thank you" message after payment (`?paid=1`) — ✅ done (confirmation banner).
 
 ### Phase 3 — Full 1.0 version: accounts 🔵 · *later — once the MVP is earning (~Sept–Oct 2026)*
