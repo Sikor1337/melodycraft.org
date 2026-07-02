@@ -7,15 +7,15 @@ afterEach(cleanup);
 describe('Pricing', () => {
   it('renders all three plans with their prices', () => {
     render(<Pricing onSelectPlan={() => {}} />);
-    expect(screen.getByText('Personal')).toBeInTheDocument();
-    expect(screen.getByText('Pro Release')).toBeInTheDocument();
-    expect(screen.getByText('Signature')).toBeInTheDocument();
-    expect(screen.getByText('$49')).toBeInTheDocument();
-    expect(screen.getByText('$99')).toBeInTheDocument();
-    expect(screen.getByText('$199')).toBeInTheDocument();
+    expect(screen.getByText('Just the Song')).toBeInTheDocument();
+    expect(screen.getByText('Streaming for a Year')).toBeInTheDocument();
+    expect(screen.getByText('Streaming for Life')).toBeInTheDocument();
+    expect(screen.getByText('$9.99')).toBeInTheDocument();
+    expect(screen.getByText('$39.99')).toBeInTheDocument();
+    expect(screen.getByText('$69.99')).toBeInTheDocument();
   });
 
-  it('marks exactly one plan as "Most popular" (the $99 anchor middle)', () => {
+  it('marks exactly one plan as "Most popular" (the middle streaming plan)', () => {
     render(<Pricing onSelectPlan={() => {}} />);
     expect(screen.getAllByText('Most popular')).toHaveLength(1);
   });
@@ -24,13 +24,13 @@ describe('Pricing', () => {
     const onSelectPlan = vi.fn();
     render(<Pricing onSelectPlan={onSelectPlan} />);
 
-    fireEvent.click(screen.getByRole('button', { name: /choose personal/i }));
+    fireEvent.click(screen.getByRole('button', { name: /choose just the song/i }));
     expect(onSelectPlan).toHaveBeenCalledWith('standard');
 
-    fireEvent.click(screen.getByRole('button', { name: /choose pro release/i }));
+    fireEvent.click(screen.getByRole('button', { name: /choose streaming for a year/i }));
     expect(onSelectPlan).toHaveBeenCalledWith('premium');
 
-    fireEvent.click(screen.getByRole('button', { name: /choose signature/i }));
+    fireEvent.click(screen.getByRole('button', { name: /choose streaming for life/i }));
     expect(onSelectPlan).toHaveBeenCalledWith('signature');
   });
 });

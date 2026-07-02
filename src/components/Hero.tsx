@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               className="text-lg md:text-xl text-stone-400 leading-relaxed mb-10 max-w-lg"
             >
               Tell us the story. Our producers write, record, and master a
-              studio-quality track that's entirely yours — delivered in 24 hours.
+              studio-quality track that's entirely yours, delivered in 24 hours.
             </motion.p>
 
             <motion.div

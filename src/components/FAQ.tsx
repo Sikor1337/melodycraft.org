@@ -5,11 +5,11 @@ import { Plus } from 'lucide-react';
 const FAQS = [
   {
     q: 'How long does it take?',
-    a: 'Most songs are delivered within 24 hours. Pro Release orders are prioritized and include a dedicated producer who keeps you updated.',
+    a: 'Most songs are delivered within 24 hours. You share the brief and a real producer gets to work right away.',
   },
   {
     q: 'Do I own the rights?',
-    a: 'Yes. Personal includes a personal-use license; Pro Release grants full commercial rights — use it on YouTube, Spotify, ads, anywhere.',
+    a: "Yes. Every song is written just for you and yours to keep. The Just the Song plan is for personal use; the streaming plans also publish it to Apple Music, Spotify and more.",
   },
   {
     q: 'Who actually makes the song?',
@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: 'Can you distribute it to streaming?',
-    a: 'Yes — Pro Release includes distribution to all major platforms, plus WAV files and stems.',
+    a: 'Yes. Add a streaming plan and we publish your song to all major platforms, either for a year or for life. You always approve the final track before we upload it.',
   },
 ];
 

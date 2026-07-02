@@ -41,7 +41,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, i
 
   // Fallback when no Payment Link is configured yet: let the customer email the brief.
   const mailtoHref = (() => {
-    const subject = `Custom song order — ${label} ($${item.price})`;
+    const subject = `Custom song order: ${label} ($${item.price})`;
     const body = [
       `Plan: ${label} ($${item.price})`,
       `Style: ${item.order.genre}`,

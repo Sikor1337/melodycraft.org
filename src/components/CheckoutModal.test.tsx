@@ -20,14 +20,14 @@ const baseOrder = {
 
 const item = (tier: 'standard' | 'premium'): OrderItem => ({
   tier,
-  price: tier === 'premium' ? 99 : 49,
+  price: tier === 'premium' ? 39.99 : 9.99,
   order: baseOrder,
 });
 
 describe('CheckoutModal', () => {
   it('shows the Stripe pay button when a Payment Link is configured', () => {
     render(<CheckoutModal isOpen onClose={() => {}} item={item('standard')} />);
-    expect(screen.getByRole('button', { name: /pay \$49 with stripe/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /pay \$9\.99 with stripe/i })).toBeInTheDocument();
   });
 
   it('falls back to an email order link (with the brief) when no link is set', () => {

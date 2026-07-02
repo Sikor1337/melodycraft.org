@@ -20,7 +20,7 @@ const STEPS = [
   {
     icon: Download,
     title: 'You receive it',
-    desc: 'Within 24 hours you get a finished, mastered song — ready to gift, post, or release.',
+    desc: 'Within 24 hours you get a finished, mastered song, ready to gift, post, or release.',
   },
 ];
 

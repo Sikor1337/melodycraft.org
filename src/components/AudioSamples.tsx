@@ -55,7 +55,7 @@ export const AudioSamples: React.FC = () => {
         </div>
 
         <p className="text-sm text-stone-600 mt-10">
-          Sample players shown for layout — MelodyCraft's own releases go here.
+          Sample players shown for layout. MelodyCraft's own releases go here.
         </p>
       </div>
     </section>

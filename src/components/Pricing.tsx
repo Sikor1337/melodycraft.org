@@ -9,37 +9,41 @@ interface PricingProps {
 const PLANS = [
   {
     tier: 'standard' as Tier,
-    name: 'Personal',
-    price: 49,
-    note: 'one time',
-    features: ['Up to 3-minute song', 'Mastered MP3 download', '2 revisions included', 'Personal-use license'],
+    name: 'Just the Song',
+    price: 9.99,
+    note: 'one-time',
+    features: [
+      'Custom studio-quality song',
+      'Up to 3-minute track',
+      'Mastered MP3 download',
+      '2 revisions included',
+      'Personal-use license',
+    ],
     featured: false,
   },
   {
     tier: 'premium' as Tier,
-    name: 'Pro Release',
-    price: 99,
-    note: 'per track',
+    name: 'Streaming for a Year',
+    price: 39.99,
+    note: 'one-time',
     features: [
-      'Full commercial rights',
-      'Spotify & Apple Music distribution',
-      'WAV + stems included',
-      'Priority 24-hour delivery',
-      'Dedicated producer',
+      'Everything in Just the Song',
+      'Published to Apple Music, Spotify & more',
+      '1 year of streaming distribution',
+      'You approve before we upload',
     ],
     featured: true,
   },
   {
     tier: 'signature' as Tier,
-    name: 'Signature',
-    price: 199,
-    note: 'per track',
+    name: 'Streaming for Life',
+    price: 69.99,
+    note: 'one-time',
     features: [
-      'Everything in Pro Release',
-      'Lyric video for social media',
-      'Up to 5 revisions',
-      'Same-day express delivery',
-      '1-on-1 call with your producer',
+      'Everything in the yearly plan',
+      'Lifetime distribution that never expires',
+      'Priority delivery',
+      'You approve before we upload',
     ],
     featured: false,
   },
@@ -101,6 +105,12 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
             </div>
           ))}
         </div>
+
+        <p className="text-sm text-stone-500 mt-8 max-w-2xl">
+          Add professional lyric writing to any plan for{' '}
+          <span className="text-stone-300">$3.99</span>. You always approve the final song before
+          we upload it anywhere.
+        </p>
       </div>
     </section>
   );
