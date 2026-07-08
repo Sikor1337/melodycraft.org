@@ -96,7 +96,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="surface rounded-3xl p-6 md:p-8"
+            className="surface rounded-3xl p-5 max-w-sm w-full mx-auto lg:mx-0 lg:ml-auto"
           >
             <div className="flex items-center justify-between mb-6">
               <p className="text-xs font-medium text-accent uppercase tracking-[0.2em]">Featured work</p>
