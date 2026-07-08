@@ -6,18 +6,18 @@ import { SpotifyEmbed } from './SpotifyEmbed';
 // src = Spotify embed link for each track (open.spotify.com/embed/track/<id>).
 const SAMPLES = [
   {
-    title: 'Anniversary Ballad',
-    genre: 'Pop · Piano',
+    title: 'Feel-Good Funk',
+    genre: 'Funk · 1980s',
     src: 'https://open.spotify.com/embed/track/2PTBNDmJHinIE09YrwMDik?theme=0',
   },
   {
-    title: 'Birthday Hype',
-    genre: 'Hip Hop',
+    title: 'Birthday Anthem',
+    genre: 'Pop',
     src: 'https://open.spotify.com/embed/track/0wMONJVD4odQngAdcJvYHM?theme=0',
   },
   {
-    title: 'Wedding First Dance',
-    genre: 'Acoustic',
+    title: 'Dancefloor Drop',
+    genre: 'EDM',
     src: 'https://open.spotify.com/embed/track/0hzgOHfUB2DTBIrJIihFzV?theme=0',
   },
 ];

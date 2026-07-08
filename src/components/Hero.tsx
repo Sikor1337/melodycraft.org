@@ -1,17 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Music, Play, SkipBack, SkipForward } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+import { SpotifyEmbed } from './SpotifyEmbed';
 
 interface HeroProps {
   onStartBuilder: () => void;
 }
-
-// Static waveform pattern for the featured-track card (purely decorative).
-const BARS = [
-  18, 30, 46, 28, 60, 74, 52, 38, 66, 88, 70, 44, 26, 40, 58, 80, 62, 34, 22, 48,
-  72, 90, 64, 42, 30, 54, 76, 50, 32, 20, 36, 56, 44, 28, 18, 24,
-];
-const PLAYED = 13; // bars before the playhead are highlighted
 
 export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
   const scrollToSamples = () => {
@@ -109,43 +103,10 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               <span className="text-xs text-stone-500">Made for a customer</span>
             </div>
 
-            <div className="rounded-2xl bg-gradient-to-br from-stone-900 to-stone-950 border border-white/8 p-5">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-accent to-amber-600 flex items-center justify-center shrink-0">
-                  <Music className="w-7 h-7 text-stone-950" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-semibold text-white truncate">For Emma — Anniversary</p>
-                  <p className="text-sm text-stone-400">MelodyCraft · Acoustic Pop</p>
-                </div>
-              </div>
-
-              <div className="flex items-end gap-[3px] h-12 mt-6" aria-hidden="true">
-                {BARS.map((h, i) => (
-                  <div
-                    key={i}
-                    className={`flex-1 rounded-full ${i < PLAYED ? 'bg-accent' : 'bg-stone-700'}`}
-                    style={{ height: `${h}%` }}
-                  />
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-xs font-mono text-stone-500">0:42</span>
-                <div className="flex items-center gap-5 text-stone-300">
-                  <SkipBack className="w-4 h-4 fill-current" />
-                  <button
-                    type="button"
-                    aria-label="Play featured track preview"
-                    className="w-11 h-11 rounded-full bg-accent hover:bg-accent/90 text-stone-950 flex items-center justify-center transition-colors"
-                  >
-                    <Play className="w-5 h-5 fill-current pl-0.5" />
-                  </button>
-                  <SkipForward className="w-4 h-4 fill-current" />
-                </div>
-                <span className="text-xs font-mono text-stone-500">3:18</span>
-              </div>
-            </div>
+            <SpotifyEmbed
+              src="https://open.spotify.com/embed/track/5c2b5zMVHJ3PuI501Y2zMu?theme=0"
+              title="Featured custom track"
+            />
 
             <p className="text-sm text-stone-500 mt-5 leading-relaxed">
               A real custom track, written from a single brief and delivered in a day.
