@@ -34,12 +34,11 @@ final song before we upload it anywhere.
 ## 2. Status
 
 ### Works ✅
-Hero, "How it works", music samples (Spotify embeds), testimonials, pricing, order form,
-FAQ, mobile (hamburger menu), live hosting. Checkout redirects to **Stripe Payment Links**;
-an "Email my order" fallback shows if a link is missing.
+Hero, "How it works", music samples (custom `TrackPlayer` with real 30s Spotify previews),
+testimonials, pricing, order form, FAQ, mobile (hamburger menu), live hosting. Checkout
+redirects to **Stripe Payment Links**; an "Email my order" fallback shows if a link is missing.
 
 ### Placeholder / not wired yet ⚠️
-- 🎵 **Music samples** — popular Spotify playlists as placeholders; swap for our own tracks.
 - 💬 **Testimonials & stats** ("10,000+ customers") — placeholder text.
 - 💳 **Stripe** — currently **test-mode** links (sandbox account `$ikor sandbox`). Go live
   = create live links + swap them in (see §6).
@@ -74,15 +73,16 @@ No API keys or environment variables required to run.
 - `src/index.tsx` — entry; mounts `<App/>` in a class `ErrorBoundary` + `React.StrictMode`.
 - `src/App.tsx` — the whole page; composes sections in conversion order (Hero → TrustedBy →
   HowItWorks → AudioSamples → Testimonials → Pricing → FAQ → Footer) and toggles two modals
-  (`SongBuilderModal`, `CheckoutModal`) via framer-motion. `LoginModal` exists but is **not
-  wired** (accounts deferred to 1.0). Navigation is hash-based smooth-scroll, no router.
+  (`SongBuilderModal`, `CheckoutModal`) via framer-motion. Accounts/login are deferred to a
+  future 1.0; the MVP has no login. Navigation is hash-based smooth-scroll, no router.
 - `src/types.ts` — shared types: `Tier` (`standard | premium | signature`), `SongOrder`,
   `OrderItem`, and `TIER_PRICE` (`9.99 / 39.99 / 89.99`) + `TIER_LABEL` / `TIER_NOTE`.
 - `src/config.ts` — `STRIPE_PAYMENT_LINKS` (one URL per tier), `CONTACT_EMAIL`,
   `WEB3FORMS_ACCESS_KEY`.
 - `src/components/` — all UI, one `export const` React.FC per PascalCase file.
-- `src/components/SpotifyEmbed.tsx` — Spotify iframe wrapper; `src` URLs in Hero/AudioSamples
-  are placeholders. Prefer playlist/album embeds (dark); single-track shows a light bar.
+- `src/components/TrackPlayer.tsx` — custom on-brand audio card; plays a track's 30s Spotify
+  preview mp3 (`p.scdn.co`) inline (cover, play/pause, seekable bar; one plays at a time).
+  Used by `Hero` (featured) and `AudioSamples`. Track data (cover/preview/href) is inlined.
 
 Flow: `SongBuilderModal` collects a brief (genre, occasion, who it's for, story) and calls
 `onOrder`, which `App` turns into an `OrderItem` for `CheckoutModal`.

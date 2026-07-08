@@ -98,14 +98,11 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
             transition={{ duration: 0.8, delay: 0.25 }}
             className="w-full max-w-[25rem] 2xl:max-w-[30rem] mx-auto lg:mx-0"
           >
-            <div className="mb-6">
-              <p className="text-xs font-medium text-accent uppercase tracking-[0.2em]">Featured work</p>
-            </div>
+            <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-6">Featured work</p>
 
             {/* Inline 30s preview player (custom, on-brand) — plays on the
                 page, no Spotify white "Preview" bar. */}
             <TrackPlayer
-              variant="card"
               track={{
                 title: 'New York',
                 subtitle: 'Cypher League',

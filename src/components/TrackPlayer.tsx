@@ -18,11 +18,9 @@ let currentAudio: HTMLAudioElement | null = null;
 
 interface TrackPlayerProps {
   track: Track;
-  /** 'card' = cover on top (samples grid); 'row' = compact horizontal (hero). */
-  variant?: 'card' | 'row';
 }
 
-export const TrackPlayer: React.FC<TrackPlayerProps> = ({ track, variant = 'card' }) => {
+export const TrackPlayer: React.FC<TrackPlayerProps> = ({ track }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0); // 0..1
@@ -91,29 +89,6 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ track, variant = 'card
       />
     </div>
   );
-
-  if (variant === 'row') {
-    return (
-      <div className="group flex items-center gap-4 rounded-2xl bg-stone-900/60 border border-white/8 p-4">
-        <img src={track.cover} alt="" loading="lazy" className="w-16 h-16 rounded-xl object-cover shrink-0" />
-        <div className="min-w-0 flex-1">
-          <p className="font-semibold text-white truncate">{track.title}</p>
-          <p className="text-sm text-stone-400 truncate">{track.subtitle}</p>
-          <div className="mt-2">{progressBar}</div>
-        </div>
-        <button
-          type="button"
-          onClick={toggle}
-          aria-label={playLabel}
-          aria-pressed={playing}
-          className="w-11 h-11 rounded-full bg-accent hover:bg-accent/90 text-stone-950 flex items-center justify-center shrink-0 transition-colors"
-        >
-          {icon}
-        </button>
-        <audio ref={audioRef} src={track.preview} preload="none" />
-      </div>
-    );
-  }
 
   return (
     <div className="group surface rounded-2xl p-4">
