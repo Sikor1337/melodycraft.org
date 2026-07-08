@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
             {/* Inline 30s preview player (custom, on-brand) — plays on the
                 page, no Spotify white "Preview" bar. */}
             <TrackPlayer
-              variant="row"
+              variant="card"
               track={{
                 title: 'Rapween',
                 subtitle: 'Cypher League',
