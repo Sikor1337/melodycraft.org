@@ -29,7 +29,7 @@ export const AudioSamples: React.FC = () => {
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-medium text-accent mb-4">Listen</p>
           <h2 className="font-display text-4xl md:text-6xl font-medium text-white mb-4 leading-[1.05]">
-            Real instruments. Real vocals.
+            Made to sound like a hit.
           </h2>
           <p className="text-lg text-stone-400 leading-relaxed">
             Press play to hear the production quality we deliver on every order.

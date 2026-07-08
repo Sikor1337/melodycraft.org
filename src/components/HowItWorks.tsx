@@ -15,7 +15,7 @@ const STEPS = [
   {
     icon: Music,
     title: 'We produce it',
-    desc: 'A professional producer writes, records, and masters a track built around your brief.',
+    desc: 'A professional producer crafts and masters a track built around your brief.',
   },
   {
     icon: Download,

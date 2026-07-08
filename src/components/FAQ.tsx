@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: 'Who actually makes the song?',
-    a: 'Professional producers and musicians. You share the brief, and a real producer writes, records, and masters the track from scratch.',
+    a: 'Professional producers. You share the brief, and a producer builds the track around it, polished to a studio-quality finish.',
   },
   {
     q: "What if I don't like it?",
