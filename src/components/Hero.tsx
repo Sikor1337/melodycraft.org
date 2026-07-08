@@ -96,7 +96,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="surface rounded-3xl p-5 max-w-sm w-full mx-auto lg:mx-0 lg:ml-auto"
+            className="w-full max-w-sm mx-auto lg:mx-0 lg:ml-auto"
           >
             <div className="flex items-center justify-between mb-6">
               <p className="text-xs font-medium text-accent uppercase tracking-[0.2em]">Featured work</p>
@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               track={{
                 title: 'Rapween',
                 subtitle: 'Cypher League',
-                cover: 'https://i.scdn.co/image/ab67616d00001e0299fd492e486087bdcd5f937a',
+                cover: 'https://i.scdn.co/image/ab67616d0000b27399fd492e486087bdcd5f937a',
                 preview: 'https://p.scdn.co/mp3-preview/8d3d74b131711dfa53db0b3ebc89f9b288eaabf3',
                 href: 'https://open.spotify.com/track/5c2b5zMVHJ3PuI501Y2zMu',
               }}
