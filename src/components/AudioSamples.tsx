@@ -6,22 +6,22 @@ import { TrackPlayer, Track } from './TrackPlayer';
 // panel). cover = Spotify CDN image, preview = p.scdn.co mp3, href = full track.
 const SAMPLES: Track[] = [
   {
-    title: 'Feel-Good Funk',
-    subtitle: 'Funk · 1980s',
+    title: 'Heatwave Hotline',
+    subtitle: 'Boogie Blaster · Funk · 1980s',
     cover: 'https://i.scdn.co/image/ab67616d00001e02d75b6fc940aee8b393e849fd',
     preview: 'https://p.scdn.co/mp3-preview/d0300da2fbb9d9a41ee3975eb4f6e06b06d4bbdf',
     href: 'https://open.spotify.com/track/2PTBNDmJHinIE09YrwMDik',
   },
   {
-    title: 'Radio-Ready Pop',
-    subtitle: 'Pop',
+    title: 'Echoes in the Rain',
+    subtitle: 'Evan Vale · Pop',
     cover: 'https://i.scdn.co/image/ab67616d00001e0227f843b83240e834c32fad73',
     preview: 'https://p.scdn.co/mp3-preview/157ba2c4845d6e9a4acf450917a00af890f64302',
     href: 'https://open.spotify.com/track/0wMONJVD4odQngAdcJvYHM',
   },
   {
-    title: 'Dancefloor Drop',
-    subtitle: 'EDM',
+    title: 'Dubai Bass',
+    subtitle: 'ØPERATØRS · EDM',
     cover: 'https://i.scdn.co/image/ab67616d00001e02f7a8963b6af760a1dd7c14b5',
     preview: 'https://p.scdn.co/mp3-preview/8f953701b5932ffd2d35f8d0af30baf6759a9907',
     href: 'https://open.spotify.com/track/0hzgOHfUB2DTBIrJIihFzV',
