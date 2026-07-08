@@ -115,15 +115,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
                 href: 'https://open.spotify.com/track/5c2b5zMVHJ3PuI501Y2zMu',
               }}
             />
-
-            <p className="text-sm text-stone-500 mt-5 leading-relaxed">
-              A real custom track, written from a single brief and delivered in a day.
-            </p>
-            <div className="mt-6 pt-6 border-t border-white/8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-400">
-              <span><span className="text-white font-semibold">4.9</span>/5 rating</span>
-              <span><span className="text-white font-semibold">24h</span> turnaround</span>
-              <span><span className="text-white font-semibold">10k+</span> songs</span>
-            </div>
           </motion.div>
         </div>
       </div>
