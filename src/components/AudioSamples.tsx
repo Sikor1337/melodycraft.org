@@ -2,23 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SpotifyEmbed } from './SpotifyEmbed';
 
-// PLACEHOLDERS — swap each src for one of the studio's own Spotify track/playlist
-// embed links. Title/genre are just captions shown above each player.
+// Title/genre are just captions shown above each player; edit freely.
+// src = Spotify embed link for each track (open.spotify.com/embed/track/<id>).
 const SAMPLES = [
   {
     title: 'Anniversary Ballad',
     genre: 'Pop · Piano',
-    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0',
+    src: 'https://open.spotify.com/embed/track/2PTBNDmJHinIE09YrwMDik?theme=0',
   },
   {
     title: 'Birthday Hype',
     genre: 'Hip Hop',
-    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd?utm_source=generator&theme=0',
+    src: 'https://open.spotify.com/embed/track/0wMONJVD4odQngAdcJvYHM?theme=0',
   },
   {
     title: 'Wedding First Dance',
     genre: 'Acoustic',
-    src: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX1lVhptIYRda?utm_source=generator&theme=0',
+    src: 'https://open.spotify.com/embed/track/0hzgOHfUB2DTBIrJIihFzV?theme=0',
   },
 ];
 
@@ -55,7 +55,7 @@ export const AudioSamples: React.FC = () => {
         </div>
 
         <p className="text-sm text-stone-600 mt-10">
-          Sample players shown for layout. MelodyCraft's own releases go here.
+          A few of our custom tracks. Yours is made from scratch, just for you.
         </p>
       </div>
     </section>
