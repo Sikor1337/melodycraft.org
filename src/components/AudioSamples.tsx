@@ -1,24 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SpotifyEmbed } from './SpotifyEmbed';
+import { Play } from 'lucide-react';
 
-// Title/genre are just captions shown above each player; edit freely.
-// src = Spotify embed link for each track (open.spotify.com/embed/track/<id>).
+// Custom on-brand cards that link out to each track on Spotify. This avoids the
+// white "Preview" panel Spotify injects into inline single-track embeds for
+// logged-out visitors. Covers are Spotify CDN images; href opens the track.
 const SAMPLES = [
   {
     title: 'Feel-Good Funk',
     genre: 'Funk · 1980s',
-    src: 'https://open.spotify.com/embed/track/2PTBNDmJHinIE09YrwMDik?theme=0',
+    cover: 'https://i.scdn.co/image/ab67616d00001e02d75b6fc940aee8b393e849fd',
+    href: 'https://open.spotify.com/track/2PTBNDmJHinIE09YrwMDik',
   },
   {
     title: 'Radio-Ready Pop',
     genre: 'Pop',
-    src: 'https://open.spotify.com/embed/track/0wMONJVD4odQngAdcJvYHM?theme=0',
+    cover: 'https://i.scdn.co/image/ab67616d00001e0227f843b83240e834c32fad73',
+    href: 'https://open.spotify.com/track/0wMONJVD4odQngAdcJvYHM',
   },
   {
     title: 'Dancefloor Drop',
     genre: 'EDM',
-    src: 'https://open.spotify.com/embed/track/0hzgOHfUB2DTBIrJIihFzV?theme=0',
+    cover: 'https://i.scdn.co/image/ab67616d00001e02f7a8963b6af760a1dd7c14b5',
+    href: 'https://open.spotify.com/track/0hzgOHfUB2DTBIrJIihFzV',
   },
 ];
 
@@ -38,19 +42,38 @@ export const AudioSamples: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           {SAMPLES.map((sample, idx) => (
-            <motion.div
+            <motion.a
               key={sample.title}
+              href={sample.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
+              className="group surface rounded-2xl p-4 block hover:border-white/20 transition-colors"
             >
-              <div className="flex items-baseline justify-between mb-3">
-                <h3 className="font-semibold text-white">{sample.title}</h3>
-                <span className="text-sm text-stone-500">{sample.genre}</span>
+              <div className="relative">
+                <img
+                  src={sample.cover}
+                  alt={`${sample.title} cover`}
+                  loading="lazy"
+                  className="w-full aspect-square rounded-xl object-cover"
+                />
+                <span className="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-accent text-stone-950 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                  <Play className="w-5 h-5 fill-current pl-0.5" />
+                </span>
               </div>
-              <SpotifyEmbed src={sample.src} title={sample.title} cropHeight={88} />
-            </motion.div>
+              <div className="mt-4 flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-white">{sample.title}</p>
+                  <p className="text-sm text-stone-400">{sample.genre}</p>
+                </div>
+                <span className="text-xs text-stone-500 group-hover:text-accent transition-colors">
+                  Spotify ↗
+                </span>
+              </div>
+            </motion.a>
           ))}
         </div>
 

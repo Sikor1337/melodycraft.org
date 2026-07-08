@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star } from 'lucide-react';
-import { SpotifyEmbed } from './SpotifyEmbed';
+import { ArrowRight, Star, Play } from 'lucide-react';
 
 interface HeroProps {
   onStartBuilder: () => void;
@@ -103,13 +102,28 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               <span className="text-xs text-stone-500">Made for a customer</span>
             </div>
 
-            {/* Cropped to the dark control row — hides Spotify's white
-                logged-out "Preview" panel that renders below on single tracks. */}
-            <SpotifyEmbed
-              src="https://open.spotify.com/embed/track/5c2b5zMVHJ3PuI501Y2zMu?theme=0"
-              title="Featured custom track"
-              cropHeight={88}
-            />
+            {/* On-brand card linking to the track on Spotify — avoids the
+                white logged-out "Preview" bar of the inline embed. */}
+            <a
+              href="https://open.spotify.com/track/5c2b5zMVHJ3PuI501Y2zMu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl bg-stone-900/60 border border-white/8 p-4 hover:border-white/15 transition-colors"
+            >
+              <img
+                src="https://i.scdn.co/image/ab67616d00001e0299fd492e486087bdcd5f937a"
+                alt="Rapween cover"
+                loading="lazy"
+                className="w-16 h-16 rounded-xl object-cover shrink-0"
+              />
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-white truncate">Rapween</p>
+                <p className="text-sm text-stone-400 truncate">Listen on Spotify</p>
+              </div>
+              <span className="w-11 h-11 rounded-full bg-accent text-stone-950 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <Play className="w-5 h-5 fill-current pl-0.5" />
+              </span>
+            </a>
 
             <p className="text-sm text-stone-500 mt-5 leading-relaxed">
               A real custom track, written from a single brief and delivered in a day.
