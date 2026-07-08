@@ -18,7 +18,7 @@ export interface OrderItem {
 export const TIER_PRICE: Record<Tier, number> = {
   standard: 9.99,
   premium: 39.99,
-  signature: 69.99,
+  signature: 89.99,
 };
 
 /** Short product label shown in the builder/checkout. */

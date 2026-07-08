@@ -12,7 +12,7 @@ describe('Pricing', () => {
     expect(screen.getByText('Streaming for Life')).toBeInTheDocument();
     expect(screen.getByText('$9.99')).toBeInTheDocument();
     expect(screen.getByText('$39.99')).toBeInTheDocument();
-    expect(screen.getByText('$69.99')).toBeInTheDocument();
+    expect(screen.getByText('$89.99')).toBeInTheDocument();
   });
 
   it('marks exactly one plan as "Most popular" (the middle streaming plan)', () => {

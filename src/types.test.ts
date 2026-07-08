@@ -10,11 +10,11 @@ describe('TIER_PRICE', () => {
     expect(TIER_PRICE.premium).toBe(39.99);
   });
 
-  it('prices the lifetime streaming (signature) plan at $69.99', () => {
-    expect(TIER_PRICE.signature).toBe(69.99);
+  it('prices the lifetime streaming (signature) plan at $89.99', () => {
+    expect(TIER_PRICE.signature).toBe(89.99);
   });
 
-  it('orders the tiers good-better-best (9.99 < 39.99 < 69.99)', () => {
+  it('orders the tiers good-better-best (9.99 < 39.99 < 89.99)', () => {
     expect(TIER_PRICE.standard).toBeLessThan(TIER_PRICE.premium);
     expect(TIER_PRICE.premium).toBeLessThan(TIER_PRICE.signature);
   });
