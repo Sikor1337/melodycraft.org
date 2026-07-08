@@ -49,7 +49,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onStartBuilder }) => {
                 <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                   <step.icon className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-mono text-stone-600">0{idx + 1}</span>
+                <span className="text-sm font-mono text-stone-400">0{idx + 1}</span>
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
               <p className="text-stone-400 leading-relaxed">{step.desc}</p>

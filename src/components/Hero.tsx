@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
+import { SpotifyEmbed } from './SpotifyEmbed';
 
 interface HeroProps {
   onStartBuilder: () => void;
@@ -102,23 +103,13 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               <span className="text-xs text-stone-500">Made for a customer</span>
             </div>
 
-            {/* Cropped to the dark control row — hides Spotify's white
-                logged-out "preview" bar that a single-track embed shows below. */}
-            <div
-              className="rounded-2xl overflow-hidden border border-white/8"
-              style={{ height: 80 }}
-            >
-              <iframe
-                src="https://open.spotify.com/embed/track/5c2b5zMVHJ3PuI501Y2zMu?theme=0"
-                title="Featured custom track"
-                width="100%"
-                height={152}
-                loading="lazy"
-                frameBorder={0}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                style={{ display: 'block', border: 0 }}
-              />
-            </div>
+            {/* Full-size (352px) embed: renders dark for a single track,
+                unlike the compact one that shows a white logged-out preview bar. */}
+            <SpotifyEmbed
+              src="https://open.spotify.com/embed/track/5c2b5zMVHJ3PuI501Y2zMu?theme=0"
+              title="Featured custom track"
+              compact={false}
+            />
 
             <p className="text-sm text-stone-500 mt-5 leading-relaxed">
               A real custom track, written from a single brief and delivered in a day.

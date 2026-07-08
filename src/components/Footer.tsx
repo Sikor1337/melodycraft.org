@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/8 text-sm text-stone-600">
+        <div className="mt-12 pt-8 border-t border-white/8 text-sm text-stone-400">
           © {year} MelodyCraft. All rights reserved.
         </div>
       </div>

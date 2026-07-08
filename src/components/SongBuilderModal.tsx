@@ -101,7 +101,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
 
           <div className="grid sm:grid-cols-2 gap-5">
             <div className="space-y-3">
-              <label className="text-sm font-semibold text-stone-300">Occasion <span className="text-stone-600 font-normal">(optional)</span></label>
+              <label className="text-sm font-semibold text-stone-300">Occasion <span className="text-stone-400 font-normal">(optional)</span></label>
               <input
                 type="text"
                 value={occasion}
@@ -111,7 +111,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
               />
             </div>
             <div className="space-y-3">
-              <label className="text-sm font-semibold text-stone-300">Who is it for? <span className="text-stone-600 font-normal">(optional)</span></label>
+              <label className="text-sm font-semibold text-stone-300">Who is it for? <span className="text-stone-400 font-normal">(optional)</span></label>
               <input
                 type="text"
                 value={forWhom}
@@ -146,7 +146,7 @@ export const SongBuilderModal: React.FC<SongBuilderModalProps> = ({
             <ArrowRight className="w-5 h-5" />
           </button>
 
-          <p className="text-center text-xs text-stone-600">
+          <p className="text-center text-xs text-stone-400">
             You won't be charged yet · {TIER_NOTE[selectedTier]}
           </p>
         </form>

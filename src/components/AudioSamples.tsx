@@ -49,12 +49,12 @@ export const AudioSamples: React.FC = () => {
                 <h3 className="font-semibold text-white">{sample.title}</h3>
                 <span className="text-sm text-stone-500">{sample.genre}</span>
               </div>
-              <SpotifyEmbed src={sample.src} title={sample.title} />
+              <SpotifyEmbed src={sample.src} title={sample.title} compact={false} />
             </motion.div>
           ))}
         </div>
 
-        <p className="text-sm text-stone-600 mt-10">
+        <p className="text-sm text-stone-400 mt-10">
           A few of our custom tracks. Yours is made from scratch, just for you.
         </p>
       </div>
