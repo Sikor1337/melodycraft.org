@@ -11,7 +11,7 @@ const SAMPLES = [
     src: 'https://open.spotify.com/embed/track/2PTBNDmJHinIE09YrwMDik?theme=0',
   },
   {
-    title: 'Birthday Anthem',
+    title: 'Radio-Ready Pop',
     genre: 'Pop',
     src: 'https://open.spotify.com/embed/track/0wMONJVD4odQngAdcJvYHM?theme=0',
   },
