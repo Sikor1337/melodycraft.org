@@ -49,7 +49,7 @@ export const AudioSamples: React.FC = () => {
                 <h3 className="font-semibold text-white">{sample.title}</h3>
                 <span className="text-sm text-stone-500">{sample.genre}</span>
               </div>
-              <SpotifyEmbed src={sample.src} title={sample.title} compact={false} />
+              <SpotifyEmbed src={sample.src} title={sample.title} cropHeight={88} />
             </motion.div>
           ))}
         </div>

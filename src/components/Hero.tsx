@@ -103,12 +103,12 @@ export const Hero: React.FC<HeroProps> = ({ onStartBuilder }) => {
               <span className="text-xs text-stone-500">Made for a customer</span>
             </div>
 
-            {/* Full-size (352px) embed: renders dark for a single track,
-                unlike the compact one that shows a white logged-out preview bar. */}
+            {/* Cropped to the dark control row — hides Spotify's white
+                logged-out "Preview" panel that renders below on single tracks. */}
             <SpotifyEmbed
               src="https://open.spotify.com/embed/track/5c2b5zMVHJ3PuI501Y2zMu?theme=0"
               title="Featured custom track"
-              compact={false}
+              cropHeight={88}
             />
 
             <p className="text-sm text-stone-500 mt-5 leading-relaxed">
