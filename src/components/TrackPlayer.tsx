@@ -59,6 +59,15 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ track, variant = 'card
     void audio.play().catch(() => {});
   };
 
+  // Click or drag the range overlay to jump to that point in the preview.
+  const onSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current;
+    if (!audio || !isFinite(audio.duration) || audio.duration === 0) return;
+    const frac = Number(e.target.value) / 1000;
+    audio.currentTime = frac * audio.duration;
+    setProgress(frac);
+  };
+
   const playLabel = `${playing ? 'Pause' : 'Play'} preview of ${track.title}`;
   const icon = playing ? (
     <Pause className="w-5 h-5 fill-current" />
@@ -67,8 +76,19 @@ export const TrackPlayer: React.FC<TrackPlayerProps> = ({ track, variant = 'card
   );
 
   const progressBar = (
-    <div className="h-1 rounded-full bg-white/10 overflow-hidden">
-      <div className="h-full bg-accent transition-[width] duration-150" style={{ width: `${progress * 100}%` }} />
+    <div className="relative py-2">
+      <div className="h-1 rounded-full bg-white/10 overflow-hidden pointer-events-none">
+        <div className="h-full bg-accent" style={{ width: `${progress * 100}%` }} />
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={1000}
+        value={Math.round(progress * 1000)}
+        onChange={onSeek}
+        aria-label={`Seek ${track.title}`}
+        className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
+      />
     </div>
   );
 
